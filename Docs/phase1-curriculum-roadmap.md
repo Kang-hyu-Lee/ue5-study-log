@@ -8,7 +8,7 @@ No decisions needed here — just show up as Day N and start. Upload this to Pro
 |---|---|---|---|---|
 | 1 | Aug 4 | Tue | Math: variables & algebra basics, order of operations | C++: what a program is, compiling, variables & data types |
 | 2 | Aug 5 | Wed | DSA: what is an algorithm, informal Big-O intuition | C++: operators, expressions, type casting |
-| 3 | Aug 6 | Thu | Math: functions & graphs, trig from the unit circle (geometric meaning) | C++: conditionals (if/else), boolean logic |
+| 3 | Aug 6 | Thu | Math: functions & graphs — exponents & logarithms (what a log is, inverse of exponentiation, natural log/e — needed for Big-O's `log n`) + trig from the unit circle (geometric meaning) | C++: conditionals (if/else), boolean logic |
 | 4 | Aug 7 | Fri | DSA: arrays — what they are, indexing, memory layout intuition | C++: loops (for, while) |
 | 5 | Aug 8 | Sat | Math: vectors intro — magnitude, direction, addition | C++: functions — declaration, parameters, return values |
 | 6 | Aug 9 | Sun *(compensation day)* | **Portfolio session:** small console calculator combining variables/conditionals/loops/functions | — |
