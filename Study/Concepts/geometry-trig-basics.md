@@ -77,6 +77,10 @@ Opposite = 0.5 × 10 = 5
 
 Notice the whole problem was: identify which ratio fits the two things you have/want → plug in → solve algebraically. That pattern repeats for every SOH-CAH-TOA problem.
 
+**Common pitfall.** The #1 mistake at this stage: mislabeling which leg is "opposite" vs "adjacent" when the angle θ isn't obviously marked. Fix: always find the 90° angle first, then find θ — the side touching *both* θ and the right angle is adjacent; the side touching neither is opposite. Get this backwards and you'll use the wrong ratio (e.g. tan instead of the reciprocal) and get a nonsense answer that looks plausible.
+
+**Edge case — SOH-CAH-TOA only works on right triangles.** If a triangle has no 90° angle, none of these ratios apply directly — you'd need the Law of Sines or Law of Cosines instead (not covered yet, flagged for later). Trying to force sin/cos/tan onto a non-right triangle is a common surface-level error once triangles stop being "obviously right-angled" in a problem or diagram.
+
 ## 5. Why this matters for UE5
 - Rotating an object, aiming, calculating field-of-view cones, camera angles — all direct SOH-CAH-TOA / right-triangle applications.
 - Vectors (next up in the roadmap) are built FROM this: a vector's x and y components are literally the "adjacent" and "opposite" legs of a right triangle formed with the angle it points at.
