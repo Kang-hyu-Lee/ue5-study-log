@@ -56,6 +56,17 @@ type name = value;
 
 Note: plain text ("strings") like `"Hello"` needs `#include <string>` and the `string` type — not covered today, only mentioned so you recognize it later.
 
+**Common pitfall — uninitialized variables.** `int score;` (no `= value`) is legal C++ — it declares the variable but does NOT set it to 0 or anything predictable. It holds whatever garbage bits happened to be sitting in that memory address before. Reading it before assigning gives an unpredictable value, and the compiler often won't warn you. Rule: always initialize a variable at declaration unless you have a specific reason not to.
+
+**Pitfall — silent narrowing.** `float gravity = 9.8;` (no `f` suffix) still compiles: `9.8` is a `double` literal by default, and C++ silently narrows it down to `float` precision to fit the variable. It works, but relying on this is bad practice — always write float literals with the `f` suffix so your intent is explicit rather than accidental.
+
+**Edge case — integer overflow.** Every type has a fixed size in memory, so a fixed maximum value it can hold (`int` typically maxes around 2.1 billion). What happens past that limit depends on whether the type is signed or unsigned — this distinction is a common interview follow-up, so don't collapse it into one simplified answer:
+
+- **`unsigned int`** — overflow is well-defined by the language: it **wraps around** predictably via modular arithmetic. `UINT_MAX + 1` reliably becomes `0`.
+- **`int` (signed, what you'll use almost always)** — overflow is **undefined behavior (UB)**. The C++ standard does not guarantee what happens. In practice, on virtually all real hardware, it *does* wrap to a large negative number (a side effect of two's complement representation) — but the standard doesn't promise this, and compilers are legally allowed to optimize code on the assumption that signed overflow never happens. That can produce results more surprising than a simple wraparound.
+
+No crash, no warning either way — just a wrong number that looks plausible. Real production bug source (e.g. a score/currency counter that "goes negative" with no visible cause). Interview-safe answer: state the unsigned/signed distinction, not just "it goes negative."
+
 ## 5. Worked example — full program, explained line by line
 
 ```cpp
