@@ -37,11 +37,16 @@ No decisions needed here — just show up as Day N and start. Upload this to Pro
 Phase 2 (UE5 setup, weeks 5+) gets built once Phase 1 is done — pace and gaps from these 4 weeks will shape it, so it's not pre-committed yet.
 
 ## ⚠ DSA Topics NOT Covered in Phase 1 (must appear in Phase 2+, as a continuing parallel track, not a one-off block)
+Deliberately kept out of Phase 1 — each depends on a Phase 1 foundation being solid first (sorting/searching needs Big-O intuition; graphs need arrays+recursion; heaps need trees; DP needs recursion mastery). Squeezing them into Phase 1 would repeat the shallow-exposure problem this whole plan is designed to avoid.
+
 - Hashing (hash maps/sets) — most common interview topic, missing entirely
 - Sorting & searching algorithms (merge sort, quicksort, binary search) + complexity
 - Graphs (BFS/DFS) — Phase 1 only covers trees
 - Heaps/priority queues — relevant to gamedev pathfinding (A*, Dijkstra)
 - Light DP/greedy pattern exposure
+- Two-pointer / sliding window patterns — common timed-interview technique class, not a data structure
+- Bit manipulation — high gamedev relevance (UE5 flags, bitmasks, collision channels), not just interview prep
+- Spatial partitioning (quadtree/octree/BVH) — gamedev-specific systems knowledge, lower priority, likely Phase 3+ once UE5 fundamentals exist
 
 Phase 1 = foundation only. Do not treat DSA as "done" after Phase 1 — it needs continued spaced practice alongside UE5 work, not a finish-and-forget block.
 
