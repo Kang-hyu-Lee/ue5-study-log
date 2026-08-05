@@ -34,6 +34,18 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 
 **Cache** — temporarily stored data kept around to avoid recomputing/refetching it. Ex: UE5's Derived Data Cache stores compiled shader/asset data so it doesn't rebuild from scratch every time.
 
+**Outer loop / Inner loop** (flagged Day 2)
+- In a *nested loop* (a loop written inside another loop), the **outer loop**
+  controls the "for each X" — it runs once per item in the outer sequence.
+  The **inner loop** runs *completely* every single time the outer loop
+  advances one step.
+- Example pattern: "for each name (outer), compare against every OTHER
+  name (inner)" — this nested structure is why O(n²) algorithms exist:
+  the inner loop's full run gets repeated once per outer loop step, so
+  total work multiplies (n × n) instead of adding (n + n).
+- Syntax for actual `for` loops isn't covered until Day 4 — this term was
+  understood conceptually first, syntax comes later.
+
 ## Industry/Career
 
 **PR (Pull Request) / Code review** — before code merges into the main codebase, someone else reviews the diff and comments/approves. Standard practice everywhere, including solo open-source contributions.
