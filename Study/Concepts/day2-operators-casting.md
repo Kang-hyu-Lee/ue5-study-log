@@ -43,6 +43,14 @@ and is a comparison — you'll use it starting Day 3 with conditionals.
 You won't DO anything with these yet (that's `if/else` on Day 3), but you
 need to recognize `5 == 5` evaluates to `true` as a concept now.
 
+## Core Mechanism: Why Integer Division Happens At All
+C++ decides HOW to do division based on the types of the operands
+BEFORE it knows what you're storing the result into. If both sides of
+`/` are `int`, C++ performs integer division (result stays a whole
+number, decimal truncated) — this decision is made at the moment of the
+operation, not at the moment of assignment. This is why casting has to
+happen INSIDE the expression, not after.
+
 ## The Integer Division Trap (worked example, line by line)
 
 ```cpp
@@ -89,6 +97,24 @@ Line by line:
 **Rule of thumb:** if you're dividing two `int`s and you want a decimal
 answer, cast at least ONE of them to `double` BEFORE the division, not
 after.
+
+## Common Pitfall / Misconception
+Beginners assume casting the RESULT fixes it — e.g. writing
+`static_cast<double>(a / b)`. This does NOT work: `a / b` has already
+been computed as integer division (truncated to `3`) by the time the
+cast runs on the outside. Casting the already-truncated `3` just gives
+you `3.0`, not `3.5`. The cast must go on an OPERAND (`a` or `b`)
+**before** the `/` runs, not wrapped around the whole expression after.
+
+## Edge Case Where the Naive Understanding Breaks
+Negative number integer division doesn't just "round down" the way you
+might assume from math class. `-7 / 2` in C++ truncates TOWARD ZERO, not
+toward negative infinity — so `-7 / 2` gives `-3` (not `-4`, which is
+what flooring would give). If your gamedev code ever divides a negative
+value (e.g. a damage/knockback direction calculation) assuming
+"integer division always rounds down," you'll get an off-by-one bug that
+only shows up with negative inputs — easy to miss in testing if you only
+test positive cases.
 
 ## Why This Matters for UE5
 Damage calculations, health percentages, movement speed multipliers —
