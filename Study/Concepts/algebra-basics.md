@@ -49,6 +49,8 @@ Compute: **3 + 4 × (2 + 1)² − 5**
 
 Common mistake to watch for: doing `3 + 4` first because it's on the left, ignoring that multiplication outranks addition. If you did that you'd wrongly get `7 × 9 − 5 = 58`. The rule isn't "left to right for everything" — it's "left to right *within the same priority tier*."
 
+**Edge case — nested parentheses.** When parentheses are nested inside each other, e.g. `2 × (3 + (4 − 1))`, you resolve from the *innermost* set outward: `(4-1)=3` first, giving `2 × (3+3) = 2×6 = 12`. Surface-level PEMDAS ("do parentheses first") breaks down here if you don't also know which parentheses count as "first" — it's not left-to-right across parentheses, it's inside-out.
+
 ## 4. Why this matters for UE5
 Every piece of game math you'll do later — vector length, dot products, transform matrices — is just nested arithmetic expressions like the one above, but with variables (x, y, z components) instead of plain numbers. If you can't reliably evaluate `3 + 4 × (2 + 1)² − 5` by hand, you won't be able to sanity-check a vector math formula when something looks wrong in-engine. This is the boring foundation under the fun stuff.
 
