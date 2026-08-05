@@ -53,7 +53,7 @@ int main() {
 
     cout << "a: " << a << " b: " << b << " c: " << c << endl;
 
-    cout << a << " " << b << " " << c << " " << endl;
+    cout << a << " " << b << " " << c << " " << endl; //solution
 
     // ---------------------------------------------------------
     // Problem 5 (float vs double): Declare a float named

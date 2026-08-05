@@ -2,7 +2,7 @@
 
 Work these by hand, showing every step (like the worked example in the Concepts file). Don't skip to the answer — write out each PEMDAS step on its own line.
 
-1. Evaluate: `6 + 2 × (5 − 3)³`
+1. Evaluate: `6 + 2 × (5 − 3)³` 
 
 2. Evaluate: `(8 − 2) × 3 + 4²`
 
