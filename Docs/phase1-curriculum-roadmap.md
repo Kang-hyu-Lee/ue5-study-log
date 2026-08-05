@@ -50,6 +50,17 @@ Deliberately kept out of Phase 1 — each depends on a Phase 1 foundation being 
 
 Phase 1 = foundation only. Do not treat DSA as "done" after Phase 1 — it needs continued spaced practice alongside UE5 work, not a finish-and-forget block.
 
+## ⚠ Math Topics Not Yet Scheduled
+Unlike DSA, most remaining math is legitimately just-in-time — it's triggered by what a given system needs, not asked cold like interview DSA. Split accordingly:
+
+**Proactively schedule in Phase 2 (too pervasive to defer):**
+- Quaternions — rotation representation, avoids gimbal lock; touches nearly every UE5 project involving movement/rotation
+- Interpolation/easing (lerp, slerp) — camera movement, animation blending, UI — also near-universal
+
+**Learn just-in-time, only when a specific project needs it:**
+- Statistics/probability (loot tables, damage rolls, procedural balancing) — partial background already exists from Psych coursework, so this is lower priority than it would otherwise be
+- Noise functions (Perlin/Simplex) — procedural generation only, don't pre-schedule
+
 ## Simplified Start Prompt (use this instead)
 ```
 Day [N]. Recall check: <2–3 lines from memory>. Begin.

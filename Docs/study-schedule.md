@@ -25,6 +25,7 @@ Total: ~2.5 hrs/day, 6 days/week. Consistency > intensity — do NOT extend sess
 ## Phase Gate (don't skip ahead)
 - **Weeks 1–4 (Phase 1):** Pure fundamentals. C++ syntax + algebra/trig/vectors + core DSA (arrays, linked lists, stacks/queues, recursion, trees). UE5 editor stays closed except brief familiarization.
 - **Weeks 5+ (Phase 2):** UE5 C++ projects run in parallel with a continued DSA teaching track (not just review) — hashing, sorting/searching, graphs, heaps, two-pointer/sliding-window patterns, bit manipulation, and light DP/greedy get taught here, per the tracked list in `phase1-curriculum-roadmap.md`. Each new DSA topic still gets tied to a UE5-relevant use where one exists (e.g. bit manipulation → collision channel flags, heaps → A* pathfinding).
+- **Math in Phase 2:** quaternions and interpolation/easing (lerp, slerp) get proactively taught here too — pervasive enough not to defer. Statistics/probability and noise functions are deliberately NOT scheduled — pull those in only when a specific project actually needs them (see `phase1-curriculum-roadmap.md` for the reasoning).
 - **Ongoing, once each DSA topic has been taught once:** it enters spaced-repetition practice (a rotating timed problem, not a one-off) so nothing taught in Phase 2 goes stale before an actual interview.
 - Monthly portfolio milestone + start tracking target internship postings/deadlines against project readiness, from Phase 2 onward.
 
