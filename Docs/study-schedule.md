@@ -14,22 +14,19 @@ Total: ~2.5 hrs/day, 6 days/week. Consistency > intensity — do NOT extend sess
 | +2:30–2:45 | **Git + log** | Commit with a real message, and write 2–3 lines: what you learned, what confused you, one open question. |
 | +2:45–2:50 | **Tomorrow's first task** | Write the exact first thing you'll do tomorrow — removes the "what do I even start with" friction that kills consistency. |
 
-## Weekly Split
+## Weekly Split (general rhythm — see `phase1-curriculum-roadmap.md` for exact daily topics)
 
 | Day | Foundations block focus | Applied block focus |
 |---|---|---|
-| Mon | Math: algebra → trig → vectors (geometric meaning first) | C++ syntax fundamentals (no UE5 yet in weeks 1–4) |
-| Tue | DSA: arrays, complexity/Big-O intuition | C++ control flow, functions, pointers/references |
-| Wed | Math: vectors/matrices (ties directly to UE5 transforms) | C++ structs vs classes, memory (stack/heap) |
-| Thu | DSA: linked lists, stacks/queues, recursion | Once fundamentals solid (~wk 5+): first UE5 C++ project setup |
-| Fri | DSA: trees/graphs (as you advance) + timed practice problems | UE5 applied: small mechanic, built from typed-out code only |
+| Mon–Fri | Math or DSA theory, per the day's entry in the curriculum roadmap | C++ (Phase 1) or C++/UE5 (Phase 2+), per the roadmap |
 | Sat | **Portfolio session (3–4 hrs, longer block)** | Combine the week's math/DSA/C++ into one small shippable piece — this is what becomes the portfolio |
 | Sun | Rest, or 20-min flashcard review only | — |
 
 ## Phase Gate (don't skip ahead)
-- **Weeks 1–4:** Pure fundamentals. C++ syntax + algebra/trig/vectors + DSA basics. UE5 editor stays closed except brief familiarization.
-- **Weeks 5–8:** First UE5 C++ (not Blueprint-only) projects — simple mechanics, typed from scratch, tied to the math you just learned (e.g. movement using the vector math from week 3).
-- **Ongoing from week 8:** Weekly timed DSA problem (spaced repetition, not one-off) + monthly portfolio milestone + start tracking target internship postings/deadlines against your project readiness.
+- **Weeks 1–4 (Phase 1):** Pure fundamentals. C++ syntax + algebra/trig/vectors + core DSA (arrays, linked lists, stacks/queues, recursion, trees). UE5 editor stays closed except brief familiarization.
+- **Weeks 5+ (Phase 2):** UE5 C++ projects run in parallel with a continued DSA teaching track (not just review) — hashing, sorting/searching, graphs, heaps, two-pointer/sliding-window patterns, bit manipulation, and light DP/greedy get taught here, per the tracked list in `phase1-curriculum-roadmap.md`. Each new DSA topic still gets tied to a UE5-relevant use where one exists (e.g. bit manipulation → collision channel flags, heaps → A* pathfinding).
+- **Ongoing, once each DSA topic has been taught once:** it enters spaced-repetition practice (a rotating timed problem, not a one-off) so nothing taught in Phase 2 goes stale before an actual interview.
+- Monthly portfolio milestone + start tracking target internship postings/deadlines against project readiness, from Phase 2 onward.
 
 ## Weekly Review (do this every Sunday, 15 min)
 - What did I actually retain without looking anything up?
