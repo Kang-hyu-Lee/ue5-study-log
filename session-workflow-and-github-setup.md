@@ -57,20 +57,13 @@ This isn't needed for the pure C++/math phase — flagging it now so it's not a 
 
 ## 1. Session Start Prompt (paste this to open every session)
 
+Topic decisions are pre-made in `phase1-curriculum-roadmap.md` — you only supply the day number and the recall check.
+
 ```
-Session: [date] — [Day] — [Foundations focus] / [Applied focus] per schedule.
-
-Recall check (from memory, no notes): <write 2–3 lines on what you remember from last session>
-
-Today's first task (set at end of last session): <paste it>
-
-Begin foundations block.
+Day [N]. Recall check: <2–3 lines from memory, or "n/a, starting from zero">. Begin.
 ```
 
-If it's your very first session ever, skip the recall check and just say:
-```
-Session 1 — Monday — Math foundations / C++ syntax fundamentals. Starting from zero. Begin.
-```
+That's the whole prompt. Claude looks up Day N's Foundations/Applied topics in the roadmap file automatically — no other input needed from you.
 
 ## 2. Session End Prompt (paste this to close every session)
 
@@ -94,6 +87,30 @@ This becomes your evidence of consistency (useful for you) and, later, a readabl
 
 ## 4. Weekly (Sunday) — already established
 15-min review: what did I retain unaided, what did I "vibe" through and need to repeat, is this week's Saturday project explainable in an interview. No new prompt needed — just answer those honestly in your log.
+
+## 4b. Putting These Docs on GitHub (so any monitor/device can pull them up)
+Put these three files in a `Docs/` folder in your `ue5-study-log` repo — separate from `Study/` (which holds daily lesson output), since these are standing references, not session content.
+
+1. Download the three files from this chat: `study-schedule.md`, `phase1-curriculum-roadmap.md`, `session-workflow-and-github-setup.md`.
+2. Move them into your cloned repo folder, under a new `Docs/` subfolder:
+   ```
+   cd ue5-study-log
+   mkdir -p Docs
+   ```
+   (then drag/move the three downloaded files into `ue5-study-log/Docs/`)
+3. Commit and push each one individually (same one-file-per-commit habit as everything else):
+   ```
+   git add Docs/study-schedule.md
+   git commit -m "add study schedule reference"
+   git add Docs/phase1-curriculum-roadmap.md
+   git commit -m "add phase 1 curriculum roadmap"
+   git add Docs/session-workflow-and-github-setup.md
+   git commit -m "add session workflow guide"
+   git push
+   ```
+4. From any other monitor/device, you can now open `github.com/yourname/ue5-study-log/Docs/` in a browser and read them directly — GitHub renders `.md` files nicely with no extra tooling needed. No need to re-clone if you're just reading; only clone on a machine where you'll actually be coding.
+
+If you update these docs later (e.g. Phase 2 roadmap gets added), edit the file, then `git add Docs/<file>`, `git commit -m "update ..."`, `git push` — same loop, just applied to a doc instead of a lesson file.
 
 ## 5. Things easy to miss
 - **Don't create a new GitHub repo per topic.** One `ue5-study-log` repo, organized by folder, for the whole foundations phase. Split into a separate `portfolio` repo only once you have actual UE5 projects worth showcasing (Phase 2+).
