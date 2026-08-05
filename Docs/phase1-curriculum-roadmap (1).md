@@ -36,6 +36,15 @@ No decisions needed here — just show up as Day N and start. Upload this to Pro
 
 Phase 2 (UE5 setup, weeks 5+) gets built once Phase 1 is done — pace and gaps from these 4 weeks will shape it, so it's not pre-committed yet.
 
+## ⚠ DSA Topics NOT Covered in Phase 1 (must appear in Phase 2+, as a continuing parallel track, not a one-off block)
+- Hashing (hash maps/sets) — most common interview topic, missing entirely
+- Sorting & searching algorithms (merge sort, quicksort, binary search) + complexity
+- Graphs (BFS/DFS) — Phase 1 only covers trees
+- Heaps/priority queues — relevant to gamedev pathfinding (A*, Dijkstra)
+- Light DP/greedy pattern exposure
+
+Phase 1 = foundation only. Do not treat DSA as "done" after Phase 1 — it needs continued spaced practice alongside UE5 work, not a finish-and-forget block.
+
 ## Simplified Start Prompt (use this instead)
 ```
 Day [N]. Recall check: <2–3 lines from memory>. Begin.
