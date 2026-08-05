@@ -54,7 +54,7 @@ Phase 1 = foundation only. Do not treat DSA as "done" after Phase 1 — it needs
 Unlike DSA, most remaining math is legitimately just-in-time — it's triggered by what a given system needs, not asked cold like interview DSA. Split accordingly:
 
 **Proactively schedule in Phase 2 (too pervasive to defer):**
-- Quaternions — rotation representation, avoids gimbal lock; touches nearly every UE5 project involving movement/rotation
+- Quaternions — rotation representation, avoids gimbal lock; touches nearly every UE5 project involving movement/rotation. Prerequisites: algebra + trig + vectors (all Phase 1) — does NOT require calculus. (Calculus only enters for quaternion *derivatives*/angular velocity integration — physics-engine-author territory, not needed here.)
 - Interpolation/easing (lerp, slerp) — camera movement, animation blending, UI — also near-universal
 
 **Learn just-in-time, only when a specific project needs it:**
@@ -67,7 +67,5 @@ Day [N]. Recall check: <2–3 lines from memory>. Begin.
 ```
 That's it — Claude pulls today's topic from this roadmap by Day number. No other decision needed from you.
 
-## End Prompt — unchanged
-```
-Wrap session. Give me: log summary, git commands, tomorrow's first task (already fixed by roadmap — just confirm), portfolio note if relevant.
-```
+## End Prompt
+See `session-workflow-and-github-setup.md` for the current end prompt (includes git commands, log summary, glossary-term logging, and Sunday practice-sheet generation) — not duplicated here to avoid the two going out of sync.

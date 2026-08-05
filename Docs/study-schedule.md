@@ -11,8 +11,9 @@ Total: ~2.5 hrs/day, 6 days/week. Consistency > intensity — do NOT extend sess
 | +0:10–1:10 | **Foundations block** | Math or DSA theory (rotates by day, see weekly split below). New concept → explain it back in your own words before moving on. |
 | +1:10–1:20 | Break | Actually step away. |
 | +1:20–2:30 | **Applied block** | C++/UE5 hands-on. Hard rule: **type every line yourself, never paste generated code.** If Claude gives you code, close it, then re-type it from the explanation. |
-| +2:30–2:45 | **Git + log** | Commit with a real message, and write 2–3 lines: what you learned, what confused you, one open question. |
-| +2:45–2:50 | **Tomorrow's first task** | Write the exact first thing you'll do tomorrow — removes the "what do I even start with" friction that kills consistency. |
+| +2:30–2:45 | **Exercise chunk (Mon–Fri only)** | Today's slice of the week's practice sheet (see Practice Sheet section below) — a handful of coding + math questions, handwritten. Volume-building, not perfectionism — flex to 20 min if a set runs long. |
+| +2:45–3:00 | **Git + log** | Commit with a real message, and write 2–3 lines: what you learned, what confused you, one open question. |
+| +3:00–3:05 | **Tomorrow's first task** | Write the exact first thing you'll do tomorrow — removes the "what do I even start with" friction that kills consistency. |
 
 ## Weekly Split (general rhythm — see `phase1-curriculum-roadmap.md` for exact daily topics)
 
@@ -29,7 +30,16 @@ Total: ~2.5 hrs/day, 6 days/week. Consistency > intensity — do NOT extend sess
 - **Ongoing, once each DSA topic has been taught once:** it enters spaced-repetition practice (a rotating timed problem, not a one-off) so nothing taught in Phase 2 goes stale before an actual interview.
 - Monthly portfolio milestone + start tracking target internship postings/deadlines against project readiness, from Phase 2 onward.
 
+## Weekly Practice Sheet (generated Sunday, completed Mon–Fri)
+Generated at the end of Sunday's review, split into two tracks, saved to `Study/Exercises/` with a separate answer key (never on the same sheet — check only after attempting on paper):
+
+- **Coding track:** ~30 questions/week covering that week's new C++ concepts + spaced-repetition pulls from prior weeks, at moderate/fluency-building difficulty (not deep puzzles).
+- **Math track:** ~50 quick procedural questions on first exposure to a topic (algebra manipulation, trig conversions, basic vector ops — needs volume/speed); shifts to ~12/week harder application problems once a topic has had a prior week of practice (needs slow application thinking, not repetition).
+
+Both tracks get chunked across Mon–Fri's Exercise chunk block (~6 coding + 10 math questions/day on a quick-set week, ~6 coding + 2–3 math on an application-set week) — not done all at once.
+
 ## Weekly Review (do this every Sunday, 15 min)
 - What did I actually retain without looking anything up?
 - Which concept did I "vibe" through instead of understanding? → repeat it Monday.
 - Is this week's portfolio piece something I could explain in an interview?
+- **Wrap:** generate next week's practice sheet (coding + math tracks) per the section above, and log any glossary terms flagged with `?` this week.

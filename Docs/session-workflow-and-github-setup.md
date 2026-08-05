@@ -65,6 +65,9 @@ Day [N]. Recall check: <2–3 lines from memory, or "n/a, starting from zero">. 
 
 That's the whole prompt. Claude looks up Day N's Foundations/Applied topics in the roadmap file automatically — no other input needed from you.
 
+## 1b. Mid-Session Terminology Flag
+Anytime a term comes up you have a vague gist of but not real understanding, write it with a `?` (e.g. `REST API?`, `tick rate?`). This pauses whatever's happening for a brief explanation, then logs it to `Study/glossary.md` at session wrap (see end prompt below). No separate prompt needed — this works inside any session automatically once it's in your Project Instructions (see the addition Claude gave you to append there).
+
 ## 2. Session End Prompt (paste this to close every session)
 
 ```
@@ -73,7 +76,9 @@ Wrap session. Give me:
 2. Exact git add + commit commands for today's files.
 3. Tomorrow's first task.
 4. Portfolio/interview note if today's work is relevant.
+5. Any glossary terms I flagged with "?" today — logged to Study/glossary.md under the right category.
 ```
+On Sundays, the wrap also generates next week's coding + math practice sheet (see study-schedule.md's Weekly Practice Sheet section) — no separate prompt needed, it's part of the Sunday review wrap.
 
 ## 3. Keeping a Progress Log (do this every session, takes 1 minute)
 In your repo, keep one running file: `Study/log.md`. After each session, append the 3-line summary Claude gives you at wrap-up:
@@ -90,6 +95,8 @@ This becomes your evidence of consistency (useful for you) and, later, a readabl
 
 ## 4b. Putting These Docs on GitHub (so any monitor/device can pull them up)
 Put these three files in a `Docs/` folder in your `ue5-study-log` repo — separate from `Study/` (which holds daily lesson output), since these are standing references, not session content.
+
+Note: `Study/glossary.md` and the weekly `Study/Exercises/` sheets are NOT part of this `Docs/` batch — they live in `Study/` since they're living session content, updated by Claude at session wrap rather than pushed by you as standing references. Same git loop applies (`git add Study/glossary.md`, commit, push), just as part of your normal end-of-session commits rather than a separate Docs push.
 
 1. Download the three files from this chat: `study-schedule.md`, `phase1-curriculum-roadmap.md`, `session-workflow-and-github-setup.md`.
 2. Move them into your cloned repo folder, under a new `Docs/` subfolder:
