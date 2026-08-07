@@ -59,6 +59,7 @@ int main() {
     //    >= 90 -> 'A', >= 80 -> 'B', >= 70 -> 'C', >= 60 -> 'D', else -> 'F'
     //    Order the conditions correctly — think about what happens if you order low-to-high instead.
 
+    //WRONG ANSWER (Technically works but having a separate variable is what helps me avoid hardcoding)
     //if (score >= 90) {
     //    cout << "A\n";
     //} else if (score >= 80) {
