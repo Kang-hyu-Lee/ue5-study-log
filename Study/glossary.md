@@ -34,7 +34,7 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 
 **Cache** — temporarily stored data kept around to avoid recomputing/refetching it. Ex: UE5's Derived Data Cache stores compiled shader/asset data so it doesn't rebuild from scratch every time.
 
-**Outer loop / Inner loop** (flagged Day 2)
+**Outer loop / Inner loop** 
 - In a *nested loop* (a loop written inside another loop), the **outer loop**
   controls the "for each X" — it runs once per item in the outer sequence.
   The **inner loop** runs *completely* every single time the outer loop
@@ -44,9 +44,9 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
   the inner loop's full run gets repeated once per outer loop step, so
   total work multiplies (n × n) instead of adding (n + n).
 - Syntax for actual `for` loops isn't covered until Day 4 — this term was
-  understood conceptually first, syntax comes later.
+  understood conceptually first, syntax comes later. *(flagged Day 2)*
 
-**std::endl** — inserts a newline and flushes the output buffer (forces immediate write to screen). Contrast with `'\n'`, which just inserts the newline and lets the buffer flush naturally. Ex: dropping `std::endl` right before a line of code you suspect might crash, so the output up to that point is guaranteed visible even if the program dies immediately after.
+**std::endl** — inserts a newline and flushes the output buffer (forces immediate write to screen). Contrast with `'\n'`, which just inserts the newline and lets the buffer flush naturally. Ex: dropping `std::endl` right before a line of code you suspect might crash, so the output up to that point is guaranteed visible even if the program dies immediately after. *(flagged Day 3)*
 
 ## Industry/Career
 
