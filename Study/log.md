@@ -14,7 +14,7 @@ Confused: n/a — clarified during session (0%/100% health bar bug, outer/inner 
 
 Open question: when does sorting-then-binary-search actually pay off vs. just doing one linear scan, in a real gameplay scenario?
 
-## Day 3 — 2026-08-07
+## Day 3 — 2026-08-06
 
 Learned: log2(n) as the halving-count behind O(log n); unit circle trig (radians vs degrees, quadrant signs, cos/sin symmetry under negation — clicked after tracing +θ/-θ as mirror rotations); C++ if/else/else-if (order matters, first match wins), comparison vs assignment (== vs =, the classic bug), && / || short-circuit behavior; std::endl vs '\n' (buffer flushing, print-debugging use case); char ('...') vs string ("...") literal distinction and why 'A\n' triggers a multichar warning
 
