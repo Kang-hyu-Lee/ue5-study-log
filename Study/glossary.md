@@ -46,6 +46,8 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 - Syntax for actual `for` loops isn't covered until Day 4 — this term was
   understood conceptually first, syntax comes later.
 
+**std::endl** — inserts a newline and flushes the output buffer (forces immediate write to screen). Contrast with `'\n'`, which just inserts the newline and lets the buffer flush naturally. Ex: dropping `std::endl` right before a line of code you suspect might crash, so the output up to that point is guaranteed visible even if the program dies immediately after.
+
 ## Industry/Career
 
 **PR (Pull Request) / Code review** — before code merges into the main codebase, someone else reviews the diff and comments/approves. Standard practice everywhere, including solo open-source contributions.
