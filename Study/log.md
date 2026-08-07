@@ -4,7 +4,7 @@ Learned: PEMDAS + nested parentheses, right-triangle geometry (Pythagorean theor
 
 Confused: n/a
 
-Open question: how sin/cos/tan connects to the unit circle (Day 3 topic) — still unresolved
+Open question: how sin/cos/tan connects to the unit circle (Day 3 topic) — resolved
 
 ## Day 2 — 2026-08-05
 
