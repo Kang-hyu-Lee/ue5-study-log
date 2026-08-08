@@ -21,3 +21,10 @@ Learned: log2(n) as the halving-count behind O(log n); unit circle trig (radians
 Confused: cos(-θ)=cos(θ)/sin(-θ)=-sin(θ) didn't click from the algebra alone — needed the visual (mirrored radius lines across the x-axis) before it landed
 
 Open question: exactly what triggers a buffer flush mid-loop (buffer capacity) — is that size fixed/inspectable, or implementation-defined and not worth reasoning about precisely?
+
+## Day 4 — 2026-08-07
+Learned: arrays (contiguous memory, zero-based indexing, O(1) access, sizeof(arr)/sizeof(arr[0]) idiom), for/while loop syntax, reverse traversal, corrected change-of-base formula (log_b(a) = ln(a)/ln(b)), '\n' vs std::endl (flush cost, when std::endl is actually needed)
+
+Confused: had change-of-base formula inverted at recall check — resolved during session
+
+Open question: sizeof(arr)/sizeof(arr[0]) is the classic way to get array length, but is there a cleaner modern C++ way I should know for interviews?
