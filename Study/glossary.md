@@ -48,6 +48,8 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 
 **std::endl** — inserts a newline and flushes the output buffer (forces immediate write to screen). Contrast with `'\n'`, which just inserts the newline and lets the buffer flush naturally. Ex: dropping `std::endl` right before a line of code you suspect might crash, so the output up to that point is guaranteed visible even if the program dies immediately after. *(flagged Day 3)*
 
+**Initializer** — the first clause in a for loop's parentheses `(e.g. int i = 0)`, runs exactly once before the loop starts. Ex: in `for (int i=0; i<5; i++)`, `int i=0` is the initializer — not to be confused with the condition `(i<5)`, which is re-checked every iteration. (flagged Day 5)
+
 ## Industry/Career
 
 **PR (Pull Request) / Code review** — before code merges into the main codebase, someone else reviews the diff and comments/approves. Standard practice everywhere, including solo open-source contributions.

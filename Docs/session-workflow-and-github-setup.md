@@ -66,19 +66,20 @@ Day [N]. Recall check: <2–3 lines from memory, or "n/a, starting from zero">. 
 That's the whole prompt. Claude looks up Day N's Foundations/Applied topics in the roadmap file automatically — no other input needed from you.
 
 ## 1b. Mid-Session Terminology Flag
-Anytime a term comes up you have a vague gist of but not real understanding, write it with a `?` (e.g. `REST API?`, `tick rate?`). This pauses whatever's happening for a brief explanation, then logs it to `Study/glossary.md` at session wrap (see end prompt below). No separate prompt needed — this works inside any session automatically once it's in your Project Instructions (see the addition Claude gave you to append there).
+Anytime a term comes up you have a vague gist of but not real understanding, write it with a `?` (e.g. `REST API?`, `tick rate?`). This pauses whatever's happening for a brief explanation. At session wrap, Claude gives you the formatted entry line(s) for any terms flagged that session — you paste them into `Study/glossary.md` yourself under the right section. No separate prompt needed — this works inside any session automatically once it's in your Project Instructions.
 
 ## 2. Session End Prompt (paste this to close every session)
 
 ```
 Wrap session. Give me:
-1. Session log summary (learned / confused / one open question) — I'll paste this into my repo log.
-2. Exact git add + commit commands for today's files.
-3. Tomorrow's first task.
-4. Portfolio/interview note if today's work is relevant.
-5. Any glossary terms I flagged with "?" today — logged to Study/glossary.md under the right category.
+1. Session log summary (learned / confused / one open question) — for Study/log.md.
+2. Tomorrow's first task.
+3. Portfolio/interview note if today's work is relevant.
+4. Any glossary terms flagged with "?" today — formatted entries only, ready to paste.
 ```
 On Sundays, the wrap also generates next week's coding + math practice sheet (see study-schedule.md's Weekly Practice Sheet section) — no separate prompt needed, it's part of the Sunday review wrap.
+
+**Note:** git commands are no longer part of the automatic wrap-up — you now handle `add`/`commit`/`push` yourself using the cheat sheet in Section 0, on whatever cadence you prefer (per file, or batched at the end of a session).
 
 ## 3. Keeping a Progress Log (do this every session, takes 1 minute)
 In your repo, keep one running file: `Study/log.md`. After each session, append the 3-line summary Claude gives you at wrap-up:

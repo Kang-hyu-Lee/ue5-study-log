@@ -28,3 +28,11 @@ Learned: arrays (contiguous memory, zero-based indexing, O(1) access, sizeof(arr
 Confused: had change-of-base formula inverted at recall check — resolved during session
 
 Open question: sizeof(arr)/sizeof(arr[0]) is the classic way to get array length, but is there a cleaner modern C++ way I should know for interviews?
+
+## Day 5 — 2026-08-08
+
+Learned: vector magnitude/direction/addition/normalization (and why magnitude = hypotenuse via Pythagorean theorem); C++ function declaration, parameters, pass-by-value, return values; the distinction between position vectors and displacement vectors, including why position+position is meaningless but position+displacement or displacement+displacement are valid
+
+Confused: initially unclear how a single vector "contains" a triangle (resolved via diagram — the components ARE the two legs, the vector itself is the hypotenuse); also unclear why adding two positions is invalid when the type system allows it (resolved — position+position has no valid interpretation, only position+displacement or displacement+displacement do)
+
+Open question: n/a — both points of confusion were resolved within the session
