@@ -49,3 +49,7 @@ signaling a per-input error to the user (should stay inside the loop via continu
 
 Open question: how would this pattern change once I have std::optional or references
 to signal success/failure without overloading the return value?
+
+Addendum: found and fixed op == '+' || '-' || '*' || '/' — each || operand needs
+its own full comparison (op == X), not a bare literal, since a bare non-zero char
+implicitly converts to true and silently short-circuits the whole condition.

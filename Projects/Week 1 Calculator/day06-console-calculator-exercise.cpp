@@ -20,6 +20,7 @@
 // ---------------------------------------------------------
 
 #include <iostream>
+#include <cmath>
 
 // TODO: write your four function definitions here.
 // Signatures (fill in the body):
@@ -44,6 +45,9 @@ double Divide(double a, double b){
     return a / b;
 }
 
+double Magnitude(double a, double b){
+    return sqrt(a * a + b * b);
+}
 int main()
 {
     // TODO: declare a char variable to hold the operator
@@ -63,32 +67,37 @@ int main()
     //     - if operator matches none of +,-,*,/,q -> print an error, don't crash
 
     while (true){
-        std::cout << "Enter operator (+ - * / or q to quit): " << std::endl;
+        std::cout << "Enter operator (+ - * / or m for magnitude or q to quit): " << std::endl;
         std::cin >> op;
         if (op == 'q'){
             break;
-        }else if (op == '+' || '-' || '*' || '/'){ //added operator check logic before receiving a and b
+        }else if (op == '+' || op == '-' || op == '*' || op == '/'){ //added operator check logic before receiving a and b
                                                    //initially had it as an else branch after checking the divide operator
             std::cout << "Please enter your two numbers: " << std::endl;
             std::cin >> a >> b;
+        }else if (op == 'm'){
+            std::cout << "Please enter your 2D vector as 2 numbers (x and y)" << std::endl;
+            std::cin >> a >> b;
+            std::cout << "Magnitude of (" << a << ", " << b << ")" << Magnitude(a, b) << std::endl;
         }else {
             std::cout << "Invalid operator" << std::endl;
             continue; //learned to use continue to skip the rest of the loop to not completely exit program
                       //initially used break and return 1 which both resulted to the program getting terminated
         }
         if (op == '+'){
-            std::cout << "a + b = " << Add (a, b) << std::endl;
+            std::cout << a << " " << op << " " << b << " = " << Add (a, b) << std::endl;
         } else if (op == '-'){
-            std::cout << "a - b = " << Subtract(a, b) << std::endl;
+            std::cout << a << " " << op << " " << b << " = " << Subtract(a, b) << std::endl;
         } else if (op == '*'){
-            std::cout << "a * b = " << Multiply(a, b) << std::endl;
+            std::cout << a << " " << op << " " << b << " = " << Multiply(a, b) << std::endl;
         } else if (op == '/'){
             if (b == 0){
                 std::cout << "This is a divide-by-zero" << std::endl;
                 continue;
             } else{
-                std::cout << "a / b = " << Divide(a, b) << std::endl;
+                std::cout << a << " " << op << " " << b << " = " << Divide(a, b) << std::endl;
             }
+        }
 
     }
 
