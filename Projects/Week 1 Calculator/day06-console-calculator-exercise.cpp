@@ -78,7 +78,7 @@ int main()
         }else if (op == 'm'){
             std::cout << "Please enter your 2D vector as 2 numbers (x and y)" << std::endl;
             std::cin >> a >> b;
-            std::cout << "Magnitude of (" << a << ", " << b << ")" << Magnitude(a, b) << std::endl;
+            std::cout << "Magnitude of (" << a << ", " << b << ")" << " = " << Magnitude(a, b) << std::endl;
         }else {
             std::cout << "Invalid operator" << std::endl;
             continue; //learned to use continue to skip the rest of the loop to not completely exit program
