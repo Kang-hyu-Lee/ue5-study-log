@@ -36,3 +36,16 @@ Learned: vector magnitude/direction/addition/normalization (and why magnitude = 
 Confused: initially unclear how a single vector "contains" a triangle (resolved via diagram — the components ARE the two legs, the vector itself is the hypotenuse); also unclear why adding two positions is invalid when the type system allows it (resolved — position+position has no valid interpretation, only position+displacement or displacement+displacement do)
 
 Open question: n/a — both points of confusion were resolved within the session
+
+## Day 6 — 2026-08-09
+
+Learned: while(true) + break/continue for interactive loop control; cin >> chaining;
+function boundary design (Divide() validated at call site via precondition, not
+inside the function); why b == 0 is a safe exact float comparison (0.0 has no
+fractional binary expansion) while decimal fractions like 0.1 are not
+
+Confused: initially conflated return 1 (exit code, terminates whole program) with
+signaling a per-input error to the user (should stay inside the loop via continue)
+
+Open question: how would this pattern change once I have std::optional or references
+to signal success/failure without overloading the return value?
