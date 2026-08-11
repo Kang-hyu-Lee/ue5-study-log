@@ -37,7 +37,7 @@ Confused: initially unclear how a single vector "contains" a triangle (resolved 
 
 Open question: n/a — both points of confusion were resolved within the session
 
-## Day 6 — 2026-08-09
+## Day 6/7 — 2026-08-09
 
 Learned: while(true) + break/continue for interactive loop control; cin >> chaining;
 function boundary design (Divide() validated at call site via precondition, not
@@ -53,3 +53,16 @@ to signal success/failure without overloading the return value?
 Addendum: found and fixed op == '+' || '-' || '*' || '/' — each || operand needs
 its own full comparison (op == X), not a bare literal, since a bare non-zero char
 implicitly converts to true and silently short-circuits the whole condition.
+
+## Day 8 — 2026-08-10
+
+Learned: dot product (component agree/disagree mechanism, sign = alignment)
+and cross product (rotation direction, sign flips on operand swap) in 2D;
+C++ array declaration/indexing/looping with correct bounds; why functions
+must be defined at file scope, not nested inside main, and the two ways
+to make a function visible to main (define-above vs. forward-declare)
+
+Confused: n/a — both concepts resolved cleanly once broken down with
+plain-number examples
+
+Open question: n/a

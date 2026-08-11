@@ -1,0 +1,138 @@
+WEEK 1 PRACTICE SHEET
+Covers Days 1-6 (math/trig/logs/vectors, C++ variables through functions + loop control).
+Complete each day's slice on paper during the Exercise Chunk block. Do not check the
+answer key until you've attempted every question for that day.
+
+===========================================================
+MONDAY (Day 8) - 6 coding, 10 math
+===========================================================
+
+CODING
+C1. What does this print? int x = 9 / 2; std::cout << x;
+C2. Rewrite C1's expression using static_cast so it produces a fractional result.
+C3. bool flag = 0; if (flag) { std::cout << "A"; } else { std::cout << "B"; } - what prints?
+C4. How many times does the loop body run? for (int i = 0; i <= 5; i++) { ... }
+C5. Write a function signature (not the body) for a function named Square that takes
+    one int and returns an int.
+C6. What happens at compile time if a non-void function has a code path that never
+    reaches a return statement?
+
+MATH
+M1.  sin(30 degrees) = ?
+M2.  cos(60 degrees) = ?
+M3.  Convert 45 degrees to radians (leave as a fraction of pi).
+M4.  Convert 3*pi/4 radians to degrees.
+M5.  Right triangle: opposite = 3, hypotenuse = 5. Find sin(theta).
+M6.  Right triangle: legs 6 and 8. Find the hypotenuse (Pythagorean theorem).
+M7.  log base 2 of 8 = ?
+M8.  log base 5 of 125 = ?
+M9.  e^0 = ?
+M10. ln(1) = ?
+
+===========================================================
+TUESDAY (Day 9) - 6 coding, 10 math
+===========================================================
+
+CODING
+C7.  int a = 5; int b = 2; double result = a / b; - what value does result actually hold, and why?
+C8.  Fix C7 so result correctly holds 2.5.
+C9.  while (int i = 0; i < 3; i++) - explain what's syntactically wrong with this line.
+C10. Write a function called IsPositive that takes a double and returns a bool.
+C11. int total = 0; for (int i = 1; i <= 4; i++) { total += i; } - what is total after the loop?
+C12. What's the difference between a parameter and an argument? One sentence.
+
+MATH
+M11. sin(90 degrees) = ?
+M12. cos(0 degrees) = ?
+M13. Convert 60 degrees to radians (leave as a fraction of pi).
+M14. Convert pi/3 radians to degrees.
+M15. Right triangle: adjacent = 4, hypotenuse = 5. Find cos(theta).
+M16. Right triangle: legs 5 and 12. Find the hypotenuse.
+M17. log base 3 of 9 = ?
+M18. log base 10 of 1000 = ?
+M19. Change-of-base: rewrite log base 3 of 20 using natural logs (ln). Don't solve numerically.
+M20. ln(e) = ?
+
+===========================================================
+WEDNESDAY (Day 10) - 6 coding, 10 math
+===========================================================
+
+CODING
+C13. bool a = true; bool b = false; std::cout << (a && b); - what prints? (hint: bools print as 0/1)
+C14. std::cout << (a || b); using the same a, b from C13 - what prints?
+C15. char c = 'x'; if (c == 'a' || 'b' || 'c') { ... } - explain why this condition is
+     ALWAYS true regardless of what c is. (This is today's Day 6 bug - explain the mechanism.)
+C16. Rewrite C15's condition correctly.
+C17. int arr[5]; - how many valid indices does this array have, and what are they?
+C18. What happens (in principle) if you access arr[5] on the array from C17?
+
+MATH
+M21. sin(45 degrees) = ?
+M22. cos(45 degrees) = ?
+M23. Convert 90 degrees to radians (leave as a fraction of pi).
+M24. Convert pi/6 radians to degrees.
+M25. Right triangle: opposite = 8, adjacent = 6. Find tan(theta).
+M26. Right triangle: legs 9 and 12. Find the hypotenuse.
+M27. log base 4 of 16 = ?
+M28. log base 2 of 32 = ?
+M29. If log base 10 of x = 3, what is x?
+M30. e^1 = ? (leave in terms of e if you don't have a calculator)
+
+===========================================================
+THURSDAY (Day 11) - 6 coding, 10 math
+===========================================================
+
+CODING
+C19. Given vector components (3, 4), write the C++ expression to compute magnitude
+     using sqrt (assume <cmath> is included).
+C20. Write the C++ expression to normalize the x-component of vector (3, 4), given
+     you already have magnitude stored in a variable called mag.
+C21. double Divide(double a, double b) - write one line of validation code that should
+     run BEFORE this function is called, to prevent divide-by-zero.
+C22. What's the difference between break and continue inside a while loop? One sentence each.
+C23. std::cin >> a >> b; - explain why chaining >> like this works (what does the >> operator return?).
+C24. Write a function named Cube that takes a double and returns a double (body: value cubed).
+
+MATH
+M31. Given vector (6, 8), find the magnitude.
+M32. Normalize vector (0, 5).
+M33. Add vectors (2, 3) and (4, -1).
+M34. Subtract (5, 2) - (1, 7).
+M35. Given vector (1, 1), find the magnitude (leave as a square root if not a whole number).
+M36. sin(0 degrees) = ?
+M37. cos(90 degrees) = ?
+M38. Convert 180 degrees to radians.
+M39. Convert 2*pi radians to degrees.
+M40. Right triangle: hypotenuse = 10, opposite = 6. Find the adjacent side.
+
+===========================================================
+FRIDAY (Day 12) - 6 coding, 10 math
+===========================================================
+
+CODING
+C25. Trace this by hand - what does it print?
+     int x = 0;
+     while (x < 3) {
+         if (x == 1) { x++; continue; }
+         std::cout << x;
+         x++;
+     }
+C26. Same code as C25, but replace continue with break. What prints now?
+C27. Write a function GetMax that takes two ints and returns the larger one (use if/else, no library functions).
+C28. double result = Divide(4, 0); - assuming Divide has NO validation inside it, what
+     does this actually produce at runtime for a double divide-by-zero? (Not a crash - think about it.)
+C29. Explain in one sentence why b == 0 is a safe exact comparison for a double, when
+     something like (a + b == c) generally is NOT safe for doubles.
+C30. What's the output? int a = 10; int b = 3; std::cout << a % b;
+
+MATH
+M41. Add vectors (-2, 5) and (3, -3).
+M42. Subtract (0, 0) - (4, 4).
+M43. Given vector (5, 12), find the magnitude.
+M44. Normalize vector (3, 0).
+M45. tan(45 degrees) = ?
+M46. Convert 270 degrees to radians.
+M47. Convert 5*pi/6 radians to degrees.
+M48. log base 2 of 1 = ?
+M49. If e^x = e^3, what is x?
+M50. Right triangle: legs 7 and 24. Find the hypotenuse.

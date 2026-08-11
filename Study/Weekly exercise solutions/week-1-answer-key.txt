@@ -1,0 +1,124 @@
+WEEK 1 ANSWER KEY
+Do not open until you've attempted the corresponding day's questions on paper.
+
+===========================================================
+MONDAY (Day 8)
+===========================================================
+C1. 4 (integer division truncates 9/2 = 4.5 toward zero)
+C2. static_cast<double>(9) / 2;  (or cast either operand to double)
+C3. B (0 converts to false)
+C4. 6 times (i = 0,1,2,3,4,5 - the <= includes 5)
+C5. int Square(int x);
+C6. Undefined behavior - the compiler may warn, but on a path with no return, the
+    function returns a garbage/unspecified value.
+
+M1.  0.5
+M2.  0.5
+M3.  pi/4
+M4.  135 degrees
+M5.  3/5 = 0.6
+M6.  10
+M7.  3 (2^3 = 8)
+M8.  3 (5^3 = 125)
+M9.  1
+M10. 0
+
+===========================================================
+TUESDAY (Day 9)
+===========================================================
+C7.  2.0 - the division a/b happens in int arithmetic FIRST (5/2 = 2, truncated),
+     THEN the int result 2 is converted to double 2.0 for the assignment. The cast
+     happens too late to save the fraction.
+C8.  double result = static_cast<double>(a) / b;  (cast before the division happens)
+C9.  You can't declare a variable inside a while(...) condition using that syntax in
+     this context the way shown - that's for-loop syntax (for has 3 clauses; while
+     has one condition only). Correct: declare i before the loop, then while(i < 3).
+C10. bool IsPositive(double x);
+C11. 10 (1+2+3+4)
+C12. A parameter is the variable name in the function's declaration; an argument is
+     the actual value passed in when the function is called.
+
+M11. 1
+M12. 1
+M13. pi/3
+M14. 60 degrees
+M15. 4/5 = 0.8
+M16. 13
+M17. 2 (3^2 = 9)
+M18. 3 (10^3 = 1000)
+M19. ln(20) / ln(3)
+M20. 1
+
+===========================================================
+WEDNESDAY (Day 10)
+===========================================================
+C13. 0 (true && false = false, prints as 0)
+C14. 1 (true || false = true, prints as 1)
+C15. Because '||' requires each side to be its own full boolean expression. 'a' and
+     'b' and 'c' are bare non-zero char literals, which implicitly convert to true,
+     making the whole condition unconditionally true regardless of c's actual value.
+C16. if (c == 'a' || c == 'b' || c == 'c') { ... }
+C17. 5 valid indices: 0, 1, 2, 3, 4 (zero-based, size 5)
+C18. Undefined behavior - you're reading memory outside the array's bounds; it may
+     return garbage, crash, or appear to "work" unpredictably.
+
+M21. sqrt(2)/2 (approx 0.707)
+M22. sqrt(2)/2 (approx 0.707)
+M23. pi/2
+M24. 30 degrees
+M25. 8/6 = 4/3 (approx 1.33)
+M26. 15
+M27. 2 (4^2 = 16)
+M28. 5 (2^5 = 32)
+M29. 1000
+M30. e (approx 2.718)
+
+===========================================================
+THURSDAY (Day 11)
+===========================================================
+C19. double mag = sqrt(3*3 + 4*4);
+C20. double normalizedX = 3 / mag;
+C21. if (b == 0) { /* print error, don't call Divide */ }   (or equivalent guard clause)
+C22. break exits the loop entirely, skipping everything after it including future
+     iterations. continue skips only the rest of the CURRENT iteration and jumps back
+     to re-check the loop condition.
+C23. operator>> returns a reference to the stream itself after each read, so
+     cin >> a evaluates to cin, letting >> b chain onto that result.
+C24. double Cube(double x) { return x * x * x; }
+
+M31. 10
+M32. (0, 1)
+M33. (6, 2)
+M34. (4, -5)
+M35. sqrt(2) (approx 1.414)
+M36. 0
+M37. 0
+M38. pi
+M39. 360 degrees
+M40. 8
+
+===========================================================
+FRIDAY (Day 12)
+===========================================================
+C25. Prints "02" - at x==1, continue skips the print and jumps to the condition
+     check (x is already incremented before continue via x++, so it becomes 2 next).
+C26. Prints "0" - break exits the loop entirely the moment x==1, nothing after runs.
+C27. int GetMax(int a, int b) { if (a > b) { return a; } else { return b; } }
+C28. It does NOT crash for a double - it produces inf (positive infinity), since
+     IEEE 754 floating-point division defines nonzero/0 as infinity, not an error.
+     (This is a key double-vs-int difference: int division by zero DOES crash/UB.)
+C29. 0.0 has an exact binary representation (all bits zero), so comparing to it
+     exactly never hits rounding error - unlike sums/products of arbitrary doubles,
+     which usually can't be represented exactly in binary.
+C30. 1 (10 % 3 = remainder of 10/3, which is 1)
+
+M41. (1, 2)
+M42. (-4, -4)
+M43. 13
+M44. (1, 0)
+M45. 1
+M46. 3*pi/2
+M47. 150 degrees
+M48. 0
+M49. 3
+M50. 25
