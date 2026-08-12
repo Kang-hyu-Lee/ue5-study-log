@@ -66,3 +66,10 @@ Confused: n/a — both concepts resolved cleanly once broken down with
 plain-number examples
 
 Open question: n/a
+
+## Day 9 — 2026-08-11
+Learned: formal Big-O rules (drop constants, drop lower-order terms, sequential=add, nested=multiply, separate inputs stay separate), std::string operations and cin/getline buffer behavior
+
+Confused: initially mislabeled which rule applies to single-loop O(1)-body simplification (said Rule 2, actually Rule 1); mixed up .substr(start) vs .substr(start, length)
+
+Open question: how much Big-O theory should actually drive gamedev decisions vs. profiling real n at realistic scale
