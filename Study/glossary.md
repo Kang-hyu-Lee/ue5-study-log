@@ -52,6 +52,8 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 
 **Case normalization** — converting text to a consistent case (e.g. all lowercase) before comparing, since `==` on strings is case-sensitive by default. Ex: normalizing a player's typed console command (`"Fly"`, `"FLY"`, `"fly"`) to lowercase before checking it against `"fly"` so all variants are accepted. *(flagged Day 9)*
 
+**Comparator** — an operator or function that decides ordering/equality between two values (==, <, >, or a custom compare function). Ex: string comparison in C++ uses ASCII/lexicographic comparators; sorting algorithms are built entirely on custom comparators. *(flagged Day 10)*
+
 ## Industry/Career
 
 **PR (Pull Request) / Code review** — before code merges into the main codebase, someone else reviews the diff and comments/approves. Standard practice everywhere, including solo open-source contributions.

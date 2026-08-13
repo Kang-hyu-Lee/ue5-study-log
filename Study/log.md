@@ -73,3 +73,10 @@ Learned: formal Big-O rules (drop constants, drop lower-order terms, sequential=
 Confused: initially mislabeled which rule applies to single-loop O(1)-body simplification (said Rule 2, actually Rule 1); mixed up .substr(start) vs .substr(start, length)
 
 Open question: how much Big-O theory should actually drive gamedev decisions vs. profiling real n at realistic scale
+
+## Day 10 — 2026-08-12
+Learned: matrix-vector multiplication as row-wise dot products; matrices are non-commutative (A x B != B x A); pointers store addresses (&x), dereferencing (*ptr) reads/writes the pointed-to value; swapping values through pointers vs swapping what pointers point to; safe nullptr checks before dereferencing
+
+Confused: which axis a reflection matrix flips across vs which coordinate it negates (flipping y negates the y-value but reflects across the x-axis, not the y-axis)
+
+Open question: how does this row-by-row matrix math actually get stored/executed under the hood in FMatrix/FTransform — is it literally a 2D array, or something else?
