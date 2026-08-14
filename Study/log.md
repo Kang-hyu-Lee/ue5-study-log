@@ -80,3 +80,11 @@ Learned: matrix-vector multiplication as row-wise dot products; matrices are non
 Confused: which axis a reflection matrix flips across vs which coordinate it negates (flipping y negates the y-value but reflects across the x-axis, not the y-axis)
 
 Open question: how does this row-by-row matrix math actually get stored/executed under the hood in FMatrix/FTransform — is it literally a 2D array, or something else?
+
+## Day 11 — 2026-08-13
+
+Learned: pointer arithmetic moves by sizeof(type) not by byte (Ptr + i == *(Ptr + i) == Ptr[i]); one-past-the-end pointers are legal to compute/compare but never dereference; wild vs dangling pointer distinction (never-valid vs was-valid-then-invalidated); null checks only catch pointers that are actually nullptr, not dangling ones; linked list traversal via Head->Next chains until nullptr; front-insert is O(1) for linked lists vs O(n) for arrays.
+
+Confused: initially mixed up when a for-loop's boundary check runs relative to its body (lost index 0 walking backwards with != instead of >=); briefly treated pointer relational comparison as always illegal instead of only-illegal-across-different-objects; conflated "the loop needs a null check" with "the null check is why this specific broken-link case doesn't crash" — needed to separate what makes a loop terminate from what makes termination happen without an error.
+
+Open question: none outstanding — all 18 exercises (12 pointer arithmetic/null/dangling + 6 linked list) resolved and correctly re-explained after correction.
