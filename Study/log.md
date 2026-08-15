@@ -88,3 +88,31 @@ Learned: pointer arithmetic moves by sizeof(type) not by byte (Ptr + i == *(Ptr 
 Confused: initially mixed up when a for-loop's boundary check runs relative to its body (lost index 0 walking backwards with != instead of >=); briefly treated pointer relational comparison as always illegal instead of only-illegal-across-different-objects; conflated "the loop needs a null check" with "the null check is why this specific broken-link case doesn't crash" — needed to separate what makes a loop terminate from what makes termination happen without an error.
 
 Open question: none outstanding — all 18 exercises (12 pointer arithmetic/null/dangling + 6 linked list) resolved and correctly re-explained after correction.
+
+## Day 12 — 2026-08-14
+Learned: Node*& vs Node* for functions needing to reassign the caller's
+pointer vs just read through it; Node vs Node* (value type on stack vs
+address to heap object); reference parameters change whether the
+caller's variable is mutated and avoid a copy — not just a naming
+choice; pointer swap requires dereferencing (*A, *B) to touch the
+pointed-to value, and a temp variable used to survive a mutation must
+hold a copy of the VALUE, not another pointer into memory about to
+change; pointer arithmetic step size is always sizeof(one element),
+automatic based on pointer type — never sizeof(whole array); sizeof is
+used once, up front, to compute total element count (e.g. for EndPtr),
+not per-step; C-style strings use a '\0' terminator to mark the real
+end of data within a fixed-size buffer, so traversal checks for the
+terminator rather than a precomputed count; nested pointer-arithmetic
+traversal (step between fixed-size elements, then step through one
+element's contents) is a valid pattern, e.g. walking an array of
+fixed-size name buffers.
+
+Confused: initially thought references were just alternate names for
+readability, not something that changes program behavior; thought void
+functions couldn't use `return;` without a value; conflated per-step
+size with total-array size when reasoning about sizeof in char-array
+traversal.
+
+Open question: is there a real-world (non-interview) case in UE5 code
+where you'd choose Node** over Node*& deliberately, or is Node*&
+always preferred in modern C++?
