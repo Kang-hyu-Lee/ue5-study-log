@@ -1,0 +1,86 @@
+WEEK 1 CHEAT SHEET - CONCEPT REFERENCE (not a solution key)
+
+===========================================================
+MONDAY - variables/casting/conditionals/loops/functions basics + trig/logs
+===========================================================
+CODING
+- int / int = int (truncates toward zero). Fix: static_cast<double>(x) / y
+- bool: 0 = false, any nonzero = true
+- for (init; condition; increment) { } - runs while condition is true, checked BEFORE each iteration
+- Function signature: returnType Name(paramType paramName, ...);
+- Non-void function: EVERY code path must hit a return, or behavior is undefined
+
+MATH
+- SOH-CAH-TOA: sin=opp/hyp, cos=adj/hyp, tan=opp/adj
+- Pythagorean theorem: a^2 + b^2 = c^2 (c = hypotenuse)
+- Common angles (deg -> rad): 0, 30->pi/6, 45->pi/4, 60->pi/3, 90->pi/2, 180->pi, 270->3pi/2, 360->2pi
+- Common sin/cos: sin(0)=0, sin(30)=0.5, sin(45)=root2/2, sin(60)=root3/2, sin(90)=1
+                  cos follows the same values in reverse order
+- log_b(x) = y means b^y = x
+- ln(x) = log base e. ln(1)=0, ln(e)=1, e^0=1
+
+===========================================================
+TUESDAY - int vs double division, loop syntax, functions
+===========================================================
+CODING
+- Mixed int/double: division happens in whichever type dominates BEFORE assignment -
+  int/int truncates even if assigned to a double variable. Cast an operand early.
+- for/while require valid variable declaration+scope rules - can't merge for-style
+  3-clause syntax into while's single condition
+- parameter = name in function definition. argument = actual value passed at call site.
+
+MATH
+- Same trig/radian conversions as Monday, applied to 60/90 degree angles
+- log_b(x) change-of-base: log_b(x) = ln(x) / ln(b)
+- log base 10 (common log): log(1000)=3 means 10^3=1000
+
+===========================================================
+WEDNESDAY - logical operators, arrays intro
+===========================================================
+CODING
+- && (AND): true only if BOTH sides true. || (OR): true if EITHER side true.
+  Bools print as 0 (false) or 1 (true) via cout.
+- CRITICAL: every operand of && / || must be its OWN full comparison.
+  x == 'a' || 'b'  is WRONG (bare 'b' converts to true, breaks the whole condition)
+  x == 'a' || x == 'b'  is correct
+- Arrays: int arr[N]; valid indices are 0 through N-1. Index N (or beyond) is
+  undefined behavior - no automatic bounds checking in C++.
+
+MATH
+- Same trig/radian/log patterns as prior days, applied to 45-degree and power-of-2 values
+- tan(theta) = opposite/adjacent = sin(theta)/cos(theta)
+
+===========================================================
+THURSDAY - vector math, function calls, cin chaining, break/continue
+===========================================================
+CODING
+- Magnitude of (x, y): sqrt(x*x + y*y)  -- needs #include <cmath>
+- Normalize (x, y): (x / magnitude, y / magnitude)
+- Precondition validation: check invalid input (e.g. b == 0) BEFORE calling the
+  function, so the function itself can assume valid input
+- break: exits the loop entirely, nothing after it in the loop runs again
+- continue: skips rest of CURRENT iteration only, jumps back to condition check
+- cin >> a >> b chains because operator>> returns a reference to the stream itself
+
+MATH
+- Vector add: (x1,y1)+(x2,y2) = (x1+x2, y1+y2)
+- Vector subtract: (x1,y1)-(x2,y2) = (x1-x2, y1-y2)  -- order matters
+- Magnitude: sqrt(x^2 + y^2)
+- Same trig/radian conversions, applied to 0/90/180/270/360 degree marks
+
+===========================================================
+FRIDAY - hand-tracing, modulo, float comparison safety
+===========================================================
+CODING
+- Hand-trace loops line by line, tracking variable values after each statement -
+  don't guess, walk the actual execution order
+- % (modulo) = remainder after integer division. 10 % 3 = 1 (10 = 3*3 + 1)
+- double nonzero / 0.0 = inf (infinity) - does NOT crash, unlike int division by zero
+- Exact float/double comparison (== 0) is SAFE only for values with an exact binary
+  representation (0.0, small whole numbers). Sums/products of arbitrary doubles
+  usually accumulate rounding error and should NOT be compared with ==.
+
+MATH
+- Same vector add/subtract/magnitude/normalize formulas as Thursday
+- Same trig/radian conversions, remaining common angles
+- tan(45) = 1 (since sin(45) = cos(45))

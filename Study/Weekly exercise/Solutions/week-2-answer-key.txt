@@ -1,0 +1,145 @@
+WEEK 3 ANSWER KEY (Days 15-20)
+Check ONLY after attempting the practice sheet on paper first.
+
+====================================================
+MONDAY
+====================================================
+C1. int Scores[5]; Scores[0]=10; Scores[1]=20; Scores[2]=30; Scores[3]=40; Scores[4]=50;
+C2. std::cout << Scores[2]; (3rd element = index 2, since indexing starts at 0)
+C3. Scores[0] = 10. Scores[5] is out of bounds - undefined behavior, may read garbage
+    memory or crash. Arrays don't auto-check bounds in C++.
+C4. int Total = 0; for (int i = 0; i < 5; i++) { Total += Scores[i]; }
+C5. int Temp = Arr[0]; Arr[0] = Arr[3]; Arr[3] = Temp;
+C6. 5 elements * 4 bytes each = 20 bytes.
+
+M1. (3*1)+(4*2) = 3+8 = 11
+M2. (2*0)+(0*5) = 0 -> perpendicular (90 degrees apart)
+M3. (-1*2)+(3*-6) = -2-18 = -20
+M4. (5*5)+(5*5) = 50
+M5. A and B are perpendicular (90 degrees apart).
+M6. (1*0)+(0*1)+(0*0) = 0
+M7. (2*4)+(3*-1) = 8-3 = 5 -> positive -> acute angle
+M8. 50 - this equals |A|^2 (magnitude squared) since A=B; a positive result here
+    just confirms both vectors point the same direction (trivially, onto themselves).
+M9. (0*5)+(0*9) = 0
+M10. It measures how much two vectors point in the same direction (alignment) -
+    scaled by their lengths.
+
+====================================================
+TUESDAY
+====================================================
+C7. std::string PlayerName; std::cin >> PlayerName;
+C8. std::cout << "Hello, " << PlayerName << "!" << std::endl;
+C9. std::cin >> Age >> City; -- std::cin >> skips leading whitespace and stops at
+    the next whitespace, so it reads token-by-token, not full lines.
+C10. cin >> stops at whitespace (reads one word). getline reads the whole line
+    including spaces. Wrong choice: using cin >> for a full name like "Jane Doe"
+    only captures "Jane".
+C11. std::cout << PlayerName.length();
+C12. std::string FullName = FirstName + " " + LastName;
+
+M11. [[1,0],[0,1]]
+M12. Non-uniform scale: x-axis scaled by 2, y-axis scaled by 3.
+M13. 2x2
+M14. [[a,b],[c,d]] - a is row1col1, b is row1col2, c is row2col1, d is row2col2.
+M15. Matrix addition requires matching dimensions - entries are added position by
+    position, and a 2x2 has no corresponding entries for a 3x3's extra row/column.
+M16. It leaves the vector completely unchanged.
+M17. (7,-2) - unchanged, since M is the identity matrix.
+M18. Matrices avoid gimbal lock and let you compose multiple rotations/scales/
+    translations into one consistent operation (chained multiplication).
+M19. Each column shows where that axis (e.g. the original x-axis, y-axis) ends up
+    after the transform.
+M20. True - each entry pairs with the entry in the same position in the other
+    matrix, so mismatched dimensions have no valid pairing.
+
+====================================================
+WEDNESDAY
+====================================================
+C13. int Health = 100; int* HealthPtr = &Health;
+C14. std::cout << HealthPtr << std::endl; std::cout << *HealthPtr << std::endl;
+C15. *HealthPtr = 50;
+C16. In a declaration (int& x), & means "this is a reference type." In an expression
+    (&x), & means "give me the address of x." Same symbol, different meaning by
+    context.
+C17. A memory address - a fixed-size number (e.g. 8 bytes on a 64-bit system)
+    representing a location in memory, regardless of what type it points to.
+C18. double* ManaPtr; -- dangerous because it's uninitialized (a "wild" pointer),
+    holding garbage memory address. Dereferencing it before assignment is undefined
+    behavior.
+
+M21. (2*1)+(1*2) = 4
+M22. (0*0 - 0*1, 0*0 - 1*0, 1*1 - 0*0) = (0,0,1)
+M23. 90 degrees counterclockwise.
+M24. (4*-4)+(-2*2) = -16-4 = -20 -> negative, so A and B point in generally opposite
+    directions.
+M25. [[0,-1],[1,0]]
+M26. (3*-3)+(3*3) = -9+9 = 0 -> A and B are perpendicular.
+M27. Computing a surface normal (e.g. for lighting) from two edge vectors of a
+    triangle.
+M28. 4 entries.
+M29. sqrt(6^2+8^2) = sqrt(36+64) = sqrt(100) = 10
+M30. True.
+
+====================================================
+THURSDAY
+====================================================
+C19. P points to Arr[0] (the address of the first element - array name decays to a
+    pointer to its first element).
+C20. P+1 points to Arr[1]. std::cout << *(P+1);
+C21. int* P = nullptr; if (P != nullptr) { *P = 5; }
+C22. Dangling pointer = a pointer that still holds an address whose memory has been
+    freed/invalidated. Example (for the exercise only):
+    int* P; { int Temp = 5; P = &Temp; } // Temp goes out of scope here
+    // P now dangles - the address it holds is no longer valid.
+C23. Undefined behavior - likely a crash (dereferencing a null address), since
+    nullptr doesn't point to valid memory.
+C24. The pointer's type tells the compiler how many bytes to "skip" per increment -
+    int is 4 bytes, double is 8, so the compiler scales the arithmetic to the type's
+    size automatically.
+
+M31. (0*5)+(5*0) = 0
+M32. Flips the y-axis (reflection across the x-axis).
+M33. (1*2)+(1*2) = 4, not zero - B is a scaled version of A (same direction,
+    parallel). Confirming true parallelism formally needs magnitude comparison too
+    (flagged as beyond current material - fine to leave as "?" if unsure).
+M34. [[-1,0],[0,-1]]
+M35. (9*9)+(-9*9) = 81-81 = 0
+M36. Uniformly scales the vector by 2 (doubles its length, same direction).
+M37. (1*3)+(2*4) = 3+8 = 11
+M38. Rotation matrices preserve length (orthonormal columns); scale matrices change
+    length along one or more axes. Structurally, pure scale matrices are diagonal
+    (zeros off the diagonal); rotation matrices generally aren't.
+M39. A and B point in exactly opposite directions along the same axis.
+M40. FMatrix, or more commonly FTransform / FRotator / FQuat, which wrap the raw
+    matrix math for you in UE5.
+
+====================================================
+FRIDAY
+====================================================
+C25. int Score = 10; int& ScoreRef = Score; ScoreRef = 99;
+    std::cout << Score; // prints 99
+C26. A reference cannot be reseated - once bound, it always refers to the same
+    variable. A pointer can be reassigned at any time to point somewhere else.
+C27. void AddOne(int& X) { X = X + 1; }
+    int Val = 5; AddOne(Val); std::cout << Val; // prints 6
+C28. int Square(int X) { return X * X; }
+C29. for (int i = 1; i <= 10; i++) { std::cout << i << " "; }
+    int j = 1; while (j <= 10) { std::cout << j << " "; j++; }
+C30. Use int& (or TodoNode*&) when the function must permanently change what the
+    caller's variable holds/points to - e.g. MarkComplete needing to walk and
+    modify list data, or head-deletion needing to redirect the caller's head
+    pointer itself.
+
+M41. (10*0)+(0*10) = 0
+M42. M (identity) doesn't change direction. M2 (90 deg rotation) does.
+M43. (2*2)+(2*-2) = 4-4 = 0
+M44. [[1,0],[0,1]]
+M45. (1*1)+(1*1)+(1*1) = 3
+M46. sqrt(8^2+6^2) = sqrt(64+36) = sqrt(100) = 10
+M47. sqrt(3^2+(-4)^2) = sqrt(9+16) = sqrt(25) = 5
+M48. -1 - negative because A and B point in exactly opposite directions.
+M49. 0 - dot product with a zero vector is always 0.
+M50. It gives a fast, single-number way to test alignment/facing (e.g. "is this
+    enemy in front of the player?") without needing full angle calculations - cheap
+    and common in gameplay logic (FOV checks, backstab detection, etc.).

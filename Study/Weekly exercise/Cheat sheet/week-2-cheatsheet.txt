@@ -1,0 +1,113 @@
+WEEK 3 CHEAT SHEET (Days 15-20) - recall aid, not a re-teach
+Matches week-3-practice.txt day-by-day. No answers to specific questions.
+
+====================================================
+MONDAY - arrays / dot product
+====================================================
+ARRAYS
+- Declare: Type Name[Size]; e.g. int Scores[5];
+- Index from 0. Last valid index = Size - 1. Scores[Size] = out of bounds, undefined
+  behavior (no auto bounds-checking in C++).
+- Total size in bytes = Size * sizeof(Type).
+- Swap two elements: Temp = Arr[i]; Arr[i] = Arr[j]; Arr[j] = Temp;
+- for loop over array: for (int i = 0; i < Size; i++) { ... Arr[i] ... }
+
+DOT PRODUCT
+- Formula (2D): A · B = (Ax * Bx) + (Ay * By)
+- Formula (3D): A · B = (Ax*Bx) + (Ay*By) + (Az*Bz)
+- Result is a single scalar number, not a vector.
+- A · B = 0  -> A and B are perpendicular (90 degrees).
+- A · B > 0  -> angle between them is acute (< 90 deg).
+- A · B < 0  -> angle between them is obtuse (> 90 deg).
+- A · B with A = B  -> equals |A|^2 (magnitude squared).
+- Full formula: A · B = |A| * |B| * cos(theta) - not required to compute by hand
+  yet, but explains WHY the sign/zero rules above work.
+
+====================================================
+TUESDAY - strings/IO / matrices intro
+====================================================
+STRINGS / I/O
+- Declare: std::string Name;
+- std::cin >> Name;        // reads ONE token, stops at whitespace
+- std::getline(std::cin, Name);  // reads the WHOLE line, including spaces
+- Concatenation: std::string Full = First + " " + Last;
+- Length: Name.length()  (or Name.size())
+- Print: std::cout << "text" << Variable << std::endl;
+
+MATRICES INTRO
+- A 2x2 matrix: [[a,b],[c,d]] - row-by-row: row1 = (a,b), row2 = (c,d).
+- Identity matrix [[1,0],[0,1]] -> leaves any vector unchanged.
+- Diagonal matrix [[k,0],[0,k]] -> uniform scale by factor k.
+- [[a,0],[0,b]] with a != b -> non-uniform scale (different factor per axis).
+- Matrix addition/comparison requires matching dimensions (entries pair position-
+  by-position).
+- Each column of a 2x2 transform = where that original axis (x or y) ends up after
+  the transform is applied.
+- Why matrices over angles: they compose cleanly (chain multiple transforms) and
+  avoid gimbal lock - covered fully in Monday's Day 15 session.
+
+====================================================
+WEDNESDAY - pointers pt.1 / mixed math review
+====================================================
+POINTERS PT.1
+- & in a declaration (int& x) = "this is a reference." & in an expression (&x) =
+  "give me the address of x." Same symbol, context decides meaning.
+- Declare a pointer: Type* PtrName = &Variable;
+- Dereference (read/write through pointer): *PtrName
+- A pointer stores a memory address (fixed size, e.g. 8 bytes on 64-bit systems) -
+  NOT the value itself.
+- Uninitialized pointer = "wild" pointer, holds garbage address. Never dereference
+  before assigning it something valid.
+
+MIXED MATH (cross product, rotation matrices)
+- Cross product (3D only): A x B = (Ay*Bz - Az*By, Az*Bx - Ax*Bz, Ax*By - Ay*Bx)
+- Cross product result is a VECTOR (perpendicular to both inputs), unlike dot
+  product's scalar result.
+- 90-degree CCW rotation matrix: [[0,-1],[1,0]]
+- 180-degree rotation matrix: [[-1,0],[0,-1]]
+- Magnitude (review): |A| = sqrt(Ax^2 + Ay^2)  [+ Az^2 for 3D]
+
+====================================================
+THURSDAY - pointers pt.2 / mixed math review cont.
+====================================================
+POINTERS PT.2
+- Array name decays to a pointer to its first element: int* P = Arr; means P
+  points to Arr[0].
+- Pointer arithmetic: P + 1 moves forward by ONE ELEMENT of P's type (not one
+  byte) - compiler scales by sizeof(Type) automatically.
+- Null check pattern (always guard before dereferencing):
+    if (P != nullptr) { *P = value; }
+- Dangling pointer = pointer whose target memory has been freed/gone out of
+  scope, but pointer still holds that (now invalid) address.
+- Dereferencing nullptr or a dangling pointer = undefined behavior, typically a
+  crash.
+
+MIXED MATH cont.
+- Parallel vectors: same or opposite direction: often needs BOTH dot product
+  (checks alignment) AND magnitude comparison (checks pure scaling) to confirm
+  fully - flag with ? if this feels incomplete, it's ahead of formal teaching.
+- Scale matrix = diagonal (zeros off-diagonal). Rotation matrix = NOT diagonal in
+  general, and preserves vector length.
+
+====================================================
+FRIDAY - references vs pointers / spaced repetition
+====================================================
+REFERENCES VS POINTERS
+- Reference: Type& RefName = Variable; - must be initialized immediately, CANNOT
+  be reseated to refer to something else afterward.
+- Pointer: Type* PtrName = &Variable; - CAN be reassigned to point elsewhere at
+  any time.
+- Use Type& as a parameter when the function should permanently modify the
+  caller's variable and never needs to "redirect" to something else.
+- Use Type*& as a parameter when the function must redirect what the caller's
+  POINTER variable points to (e.g. head-of-list reassignment).
+
+SPACED REPETITION (Week 1 review)
+- Function declaration: ReturnType FuncName(ParamType Param) { ... return Value; }
+- for loop: for (int i = start; condition; i++) { ... }
+- while loop: while (condition) { ... }
+- Magnitude formula: |A| = sqrt(Ax^2 + Ay^2)
+
+====================================================
+END OF WEEK 3 CHEAT SHEET
+====================================================

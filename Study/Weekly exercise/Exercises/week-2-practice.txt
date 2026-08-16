@@ -1,0 +1,167 @@
+WEEK 3 PRACTICE SHEET (Days 15-20)
+Covers material taught Week 2 (Days 8-13): arrays, strings/IO, pointers pt1/pt2,
+references vs pointers, dot/cross product, matrices intro.
+Attempt on paper first. Do not check the answer key until you've attempted every question.
+
+====================================================
+MONDAY - 6 coding, 10 math
+====================================================
+
+CODING (arrays / indexing)
+C1. Declare an int array of size 5 called Scores and assign values 10,20,30,40,50 using
+    individual index assignments (not brace-init).
+C2. Write the line that prints the 3rd element (not the 3rd index) of Scores.
+C3. What value is at Scores[0]? What is stored at Scores[5]? Explain why the second one
+    is dangerous.
+C4. Write a for loop that sums all elements of Scores into an int called Total.
+C5. Given int Arr[4] = {1,2,3,4}; write one line that swaps Arr[0] and Arr[3].
+C6. What is the size in bytes of Scores if int is 4 bytes on your system? Show the
+    calculation, don't just state the answer.
+
+MATH (dot product - first exposure, procedural)
+M1. Vector A = (3, 4), Vector B = (1, 2). Compute A · B.
+M2. Vector A = (2, 0), Vector B = (0, 5). Compute A · B. What does the result tell you
+    about the angle between them?
+M3. Vector A = (-1, 3), Vector B = (2, -6). Compute A · B.
+M4. Vector A = (5, 5), Vector B = (5, 5). Compute A · B.
+M5. If A · B = 0, what can you conclude about A and B geometrically?
+M6. Vector A = (1, 0, 0), Vector B = (0, 1, 0) (3D). Compute A · B.
+M7. Vector A = (2, 3), Vector B = (4, -1). Compute A · B. Is the angle between them
+    acute, obtuse, or 90 degrees?
+M8. Vector A = (7, 1), Vector B = (7, 1). Compute A · B. What does a positive result vs
+    the magnitude squared tell you here?
+M9. Vector A = (0, 0), Vector B = (5, 9). Compute A · B.
+M10. Explain in one sentence (no formula) what the dot product measures.
+
+====================================================
+TUESDAY - 6 coding, 10 math
+====================================================
+
+CODING (strings / basic I/O)
+C7. Declare a std::string called PlayerName and read it from std::cin.
+C8. Print "Hello, " followed by PlayerName, followed by "!" on the same line.
+C9. Read two separate std::cin inputs into an int Age and a std::string City in one
+    program. What whitespace behavior of std::cin >> do you need to know here?
+C10. What is the difference between std::cin >> myString and std::getline(std::cin,
+    myString)? Give a concrete case where using the wrong one breaks your program.
+C11. Write a line that prints the length of PlayerName using a string member function.
+C12. Concatenate two strings, FirstName and LastName, into FullName with a space
+    between them.
+
+MATH (matrices intro - first exposure, procedural)
+M11. Write a 2x2 identity matrix.
+M12. Given matrix M = [[2,0],[0,3]], what transform does this represent geometrically?
+M13. What are the dimensions (rows x cols) of a matrix used to represent a 2D rotation?
+M14. Write a general 2x2 matrix using variables a,b,c,d. Label which position is row,
+    which is column.
+M15. Why can't you add a 2x2 matrix and a 3x3 matrix?
+M16. What is the identity matrix's effect on any vector it multiplies?
+M17. Given matrix M = [[1,0],[0,1]] and vector V = (7,-2), what is M applied to V?
+    (No multiplication rule taught yet - reason from M16.)
+M18. In one sentence, why does UE5 use matrices instead of just storing an angle for
+    rotation?
+M19. What does each column of a 2x2 transform matrix typically represent geometrically?
+M20. True or false: matrix addition requires matching dimensions. Justify in one line.
+
+====================================================
+WEDNESDAY - 6 coding, 10 math
+====================================================
+
+CODING (pointers pt.1 - addresses, & and *)
+C13. Declare int Health = 100; then declare a pointer HealthPtr that stores the
+    address of Health.
+C14. Print the address stored in HealthPtr and the value it points to, on two
+    separate lines.
+C15. Using HealthPtr, change Health to 50 without writing "Health = 50" directly.
+C16. What does & mean when it appears in a declaration (int& x) vs in an expression
+    (&x)? Give one example of each.
+C17. What is stored inside a pointer variable? (Not "an address" - describe it
+    concretely: size, what it looks like.)
+C18. Declare a pointer to a double called ManaPtr, without initializing it. Why is
+    this dangerous before you assign it something?
+
+MATH (mixed review - dot/cross + matrices)
+M21. Vector A = (2,1), Vector B = (1,2). Compute A · B.
+M22. Vector A = (1,0,0), Vector B = (0,1,0) (3D). Compute A x B (cross product) -
+    hint: this needs the 3D cross product formula, check Concepts file if not covered
+    yet in your notes.
+M23. Given matrix M = [[0,-1],[1,0]], what rotation angle does this represent?
+M24. Vector A = (4,-2), Vector B = (-4,2). Compute A · B. What does the sign tell you?
+M25. Write the 2x2 rotation matrix for a 90-degree counterclockwise rotation
+    (values only, no derivation needed yet).
+M26. Vector A = (3,3), Vector B = (-3,3). Compute A · B. What's special about this pair?
+M27. What real UE5 system would use cross product on two vectors? Name one.
+M28. Given a 2x2 matrix, how many total numbers (entries) does it store?
+M29. Vector A = (6,8). What is its magnitude? (Review from Day 5 - spaced repetition.)
+M30. True or false: dot product of two unit vectors equals the cosine of the angle
+    between them. (Flag with ? in your notes if this doesn't make sense yet - it's
+    ahead of what's been formally taught.)
+
+====================================================
+THURSDAY - 6 coding, 10 math
+====================================================
+
+CODING (pointers pt.2 - arithmetic, null/dangling)
+C19. Declare int Arr[3] = {10,20,30}; and int* P = Arr;. What does P point to?
+C20. What does P + 1 point to? Write the line to print the value at that address.
+C21. Write a pointer initialized to nullptr, then write an if-check that safely
+    guards against dereferencing it.
+C22. Explain what a dangling pointer is and write 3 lines of code that create one
+    on purpose (for the exercise only - never do this in real code).
+C23. Given int* P = nullptr; what happens if you write *P = 5; and don't guard it?
+C24. Why does incrementing an int* move it by 4 bytes but incrementing a double*
+    move it by 8? Answer in terms of what the pointer's type tells the compiler.
+
+MATH (mixed review - dot/cross + matrices, continued)
+M31. Vector A = (0,5), Vector B = (5,0). Compute A · B.
+M32. Given matrix M = [[1,0],[0,-1]], what transform does this represent?
+M33. Vector A = (1,1), Vector B = (2,2). Compute A · B. Are A and B parallel? How do
+    you know from the dot product alone (hint: you may need magnitude too - flag with
+    ? if unsure).
+M34. Write the 2x2 rotation matrix for a 180-degree rotation.
+M35. Vector A = (9,-9), Vector B = (9,9). Compute A · B.
+M36. Given M = [[2,0],[0,2]], what does this matrix do to any vector it's applied to?
+M37. Vector A = (1,2), Vector B = (3,4). Compute A · B.
+M38. What's the difference between a rotation matrix and a scale matrix, structurally?
+M39. Vector A = (-5,0), Vector B = (5,0). Compute A · B. What does this tell you about
+    direction?
+M40. Name one UE5 struct/type that wraps matrix math for you so you rarely write raw
+    matrices by hand.
+
+====================================================
+FRIDAY - 6 coding (incl. spaced repetition), 10 math
+====================================================
+
+CODING (references vs pointers + spaced repetition: loops/functions)
+C25. Declare int Score = 10; int& ScoreRef = Score;. Change Score to 99 through
+    ScoreRef. Print Score to confirm.
+C26. Can a reference be reseated to refer to a different variable after
+    initialization? Can a pointer be reassigned to point elsewhere? State both
+    clearly.
+C27. Write a function AddOne(int& X) that increments X by reference. Call it on a
+    variable and print the result.
+C28. [Spaced repetition - Day 5] Write a function Square(int X) that returns X*X,
+    with explicit parameter and return types.
+C29. [Spaced repetition - Day 4] Write a for loop that prints numbers 1 to 10, then
+    a while loop that does the same thing.
+C30. When would you choose int& over int* as a function parameter? Give one concrete
+    scenario from your todo-list project.
+
+MATH (mixed review, final day)
+M41. Vector A = (10,0), Vector B = (0,10). Compute A · B.
+M42. Given M = [[1,0],[0,1]] (identity) and M2 = [[0,-1],[1,0]] (90 deg rotation),
+    which one changes a vector's direction and which doesn't?
+M43. Vector A = (2,2), Vector B = (2,-2). Compute A · B.
+M44. Write a 2x2 matrix that represents "no change at all" to any vector.
+M45. Vector A = (1,1,1), Vector B = (1,1,1) (3D). Compute A · B.
+M46. Vector A = (8,6). Magnitude? (spaced repetition, Day 5)
+M47. Vector A = (3,-4). Magnitude? (spaced repetition, Day 5)
+M48. Vector A = (1,0), Vector B = (-1,0). Compute A · B. What does the negative sign
+    mean here?
+M49. Vector A = (100,0), Vector B = (0,0). Compute A · B.
+M50. In one sentence, why is A · B = |A||B|cos(theta) useful in gamedev even before
+    you've derived it formally? (Open-ended - answer from intuition, not memorization.)
+
+====================================================
+END OF WEEK 3 SHEET - answers in week-3-answer-key.txt
+====================================================
