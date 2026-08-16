@@ -116,3 +116,19 @@ traversal.
 Open question: is there a real-world (non-interview) case in UE5 code
 where you'd choose Node** over Node*& deliberately, or is Node*&
 always preferred in modern C++?
+
+## Day 13 — 2026-08-15
+
+Learned: structs vs. plain variables (bundling related data, dot-operator access,
+default member initializers); self-referential struct sizing (pointer required —
+value member creates infinite/uncomputable size); explicit field-by-field struct
+construction over nested brace-init; multi-delete traversal pattern (Prev only
+steps forward when nothing was deleted, since a delete already relinks Prev->Next
+to the next candidate); precondition-vs-internal-handling tradeoff for signaling
+"no valid result" (string has safe sentinels available, unlike double)
+
+Confused: initially conflated "by reference" and "by value" terminology out loud
+(said the words backwards while stating correct reasoning); briefly mixed up
+which variable (Head vs Prev) needed which fix during DeleteCompleted's Bug 2 trace
+
+Open question: none carried forward — DeleteCompleted's three
