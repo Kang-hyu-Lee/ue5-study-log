@@ -132,3 +132,14 @@ Confused: initially conflated "by reference" and "by value" terminology out loud
 which variable (Head vs Prev) needed which fix during DeleteCompleted's Bug 2 trace
 
 Open question: none carried forward — DeleteCompleted's three
+
+## Day 14 — 2026-08-16
+Learned: refined pointer mutability distinction — plain TodoNode* CAN be locally
+reassigned (e.g. walking a list with current = current->Next), it just doesn't
+propagate that reassignment back to the caller; only TodoNode*& does that.
+
+Confused: n/a — rest day, recall check only.
+
+Open question: DeleteCompleted design questions carried forward unresolved —
+(1) whether Node*& is needed, (2) Prev behavior after a mid-list delete in a
+multi-delete pass, (3) handling repeated head deletions.
