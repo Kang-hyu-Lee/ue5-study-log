@@ -1,0 +1,4 @@
+# g++ build output — never commit compiled binaries
+Study/Exercises/*
+!Study/Exercises/*.cpp
+!Study/Exercises/*.md
