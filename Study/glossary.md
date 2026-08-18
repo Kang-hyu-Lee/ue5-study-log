@@ -54,6 +54,12 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 
 **Comparator** — an operator or function that decides ordering/equality between two values (==, <, >, or a custom compare function). Ex: string comparison in C++ uses ASCII/lexicographic comparators; sorting algorithms are built entirely on custom comparators. *(flagged Day 10)*
 
+**memcpy** — a C standard library function that copies raw bytes from one memory location to another with zero understanding of what those bytes mean. Ex: sending a struct byte-for-byte over UDP relies on memcpy-style raw copying, which only works safely if the struct stays POD (plain old data). *(flagged Day 15)*
+
+**virtual function** — a member function marked `virtual` that lets a derived class override it, and lets the derived version run even through a base-class pointer/reference. Ex: `Enemy* E = new Boss(); E->TakeDamage();` calls Boss's version, not Enemy's, because TakeDamage is virtual. *(flagged Day 15)*
+
+**vtable pointer** — a hidden pointer the compiler inserts as an extra field the moment a class/struct has any virtual function, pointing to a lookup table of that class's virtual function addresses. Ex: it's why adding a virtual function to a struct silently grows `sizeof()` and breaks raw memcpy/network replication — the extra bytes are a memory address meaningless off the local machine. *(flagged Day 15)*
+
 ## Industry/Career
 
 **PR (Pull Request) / Code review** — before code merges into the main codebase, someone else reviews the diff and comments/approves. Standard practice everywhere, including solo open-source contributions.

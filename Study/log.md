@@ -143,3 +143,10 @@ Confused: n/a — rest day, recall check only.
 Open question: DeleteCompleted design questions carried forward unresolved —
 (1) whether Node*& is needed, (2) Prev behavior after a mid-list delete in a
 multi-delete pass, (3) handling repeated head deletions.
+
+## Day 15 — 2026-08-17
+Learned: matrix multiplication mechanics (row*column, non-commutative), 2D rotation matrix derivation from unit circle, why translation needs homogeneous coordinates (padding with 1 to smuggle a constant into a multiply-only operation), struct vs class default access difference, calling member functions with dot notation, why struct with virtual function breaks POD/memcpy safety
+
+Confused: initially explained homogeneous coordinates as a "direction" problem rather than an "addition" problem — corrected after a second pass
+
+Open question: how translation via homogeneous coordinates concretely shows up when Day 17 (local vs world space) is covered
