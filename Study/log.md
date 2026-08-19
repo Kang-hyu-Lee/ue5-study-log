@@ -150,3 +150,10 @@ Learned: matrix multiplication mechanics (row*column, non-commutative), 2D rotat
 Confused: initially explained homogeneous coordinates as a "direction" problem rather than an "addition" problem — corrected after a second pass
 
 Open question: how translation via homogeneous coordinates concretely shows up when Day 17 (local vs world space) is covered
+
+## Day 16 — 2026-08-18
+Learned: Array-based stack (Top as index, not pointer) and linked-list-based queue (Head/Tail) built from scratch; deep dive on pointer vs reference vs value parameter semantics using address/house tracing; stack vs heap memory, new/delete, memory leaks, dangling pointers, double-delete patterns; fixed the confirmed DeleteCompleted leak in todo-list.cpp
+
+Confused: initial mix-up between plain-pointer reseating (needs T*&) vs writing-through-a-reference (T& is enough) — resolved through repeated address tracing across ArrayStack, Queue, and LinkedStack examples
+
+Open question: none new — LinkedStack Push/Pop left unimplemented, carried to tomorrow
