@@ -1,4 +1,4 @@
-# g++ build output — never commit compiled binaries
-Study/Exercises/*
-!Study/Exercises/*.cpp
-!Study/Exercises/*.md
+# compiled test binaries — never commit these, wherever they end up
+*.exe
+*.out
+*.o

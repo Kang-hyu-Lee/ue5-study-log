@@ -157,3 +157,11 @@ Learned: Array-based stack (Top as index, not pointer) and linked-list-based que
 Confused: initial mix-up between plain-pointer reseating (needs T*&) vs writing-through-a-reference (T& is enough) — resolved through repeated address tracing across ArrayStack, Queue, and LinkedStack examples
 
 Open question: none new — LinkedStack Push/Pop left unimplemented, carried to tomorrow
+
+## Day 17 — 2026-08-19
+
+Learned: local vs world space and parent-child transform chains (rotate then translate, tied directly to Day 15's rotation matrix and non-commutative order); constructors (default + parameterized, initializer-list syntax and its declaration-order gotcha); destructors and RAII (heap resource tied to object lifetime, freed automatically at scope exit); why an unparented actor's local and world position match (identity transform substituted, not a coincidence of the object itself).
+
+Confused: initializer-list syntax for multiple members took a couple of passes to click — resolved. Rectangle::Area() had a leftover "2 *" copied from the Perimeter formula, caught by running the code rather than by inspection — fixed and re-verified, output now correctly (1, 4).
+
+Open question: none this session — floating-point near-zero output (-3.49691e-07) was explained inline via the Day 16 float-comparison rule, not left open.
