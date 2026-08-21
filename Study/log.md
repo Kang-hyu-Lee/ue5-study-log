@@ -165,3 +165,10 @@ Learned: local vs world space and parent-child transform chains (rotate then tra
 Confused: initializer-list syntax for multiple members took a couple of passes to click — resolved. Rectangle::Area() had a leftover "2 *" copied from the Perimeter formula, caught by running the code rather than by inspection — fixed and re-verified, output now correctly (1, 4).
 
 Open question: none this session — floating-point near-zero output (-3.49691e-07) was explained inline via the Day 16 float-comparison rule, not left open.
+
+## Day 18 — 2026-08-20
+Learned: recursion (base case + recursive case, trust-the-recursion / delegate-don't-iterate mindset, pre-order vs post-order via PrintReverse), encapsulation (private enforces invariants; member variables persist across calls vs local variables reset every call; pass-by-value copies vs pass-by-pointer/reference share the same object; most vexing parse with Type Name();)
+
+Confused: initially tried to track state with local variables (Index/Sum/Counter) inside recursive functions before realizing each call gets a fresh copy — took several attempts across SumArray and CountNodes to unlearn
+
+Open question: when would you actually choose pass-by-pointer over pass-by-reference for passing an object into a recursive helper, given both avoid the copy? Also: compiled program produced no output — unresolved, need to check compile/run steps.
