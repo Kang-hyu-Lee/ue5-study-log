@@ -172,3 +172,10 @@ Learned: recursion (base case + recursive case, trust-the-recursion / delegate-d
 Confused: initially tried to track state with local variables (Index/Sum/Counter) inside recursive functions before realizing each call gets a fresh copy — took several attempts across SumArray and CountNodes to unlearn
 
 Open question: when would you actually choose pass-by-pointer over pass-by-reference for passing an object into a recursive helper, given both avoid the copy? Also: compiled program produced no output — unresolved, need to check compile/run steps.
+
+## Day 19 — 2026-08-21
+Learned: Euclid's GCD (why A%B preserves common divisors — derived it from "difference of two multiples of D is a multiple of D"), inheritance syntax (base/derived, protected, explicit base constructor calls), object slicing vs. reference-visibility limits, base-first/derived-last construction-destruction order confirmed empirically at two scope levels
+
+Confused: initially unclear why remainder preserves GCD — resolved by tracing the subtraction-of-multiples argument by hand
+
+Open question: how does this destruction-order rule extend once a class owns actual heap resources (a real leak risk instead of just a print statement)?
