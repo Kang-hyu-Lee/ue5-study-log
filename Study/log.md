@@ -179,3 +179,24 @@ Learned: Euclid's GCD (why A%B preserves common divisors — derived it from "di
 Confused: initially unclear why remainder preserves GCD — resolved by tracing the subtraction-of-multiples argument by hand
 
 Open question: how does this destruction-order rule extend once a class owns actual heap resources (a real leak risk instead of just a print statement)?
+
+## Day 20 — 2026-08-22
+
+Learned: full undo system combining a hand-rolled array stack (CommandStack) and linked-list queue (LogQueue) inside a two-class inheritance hierarchy (EditorSession base, TextEditor derived) — explicit base constructor call, brace-initialization for structs (Command{...}), std::string::insert/erase/substr, enum class scoping, const member functions vs const variables, why protected fields + getters beat raw access for reads but not for the mutating methods themselves
+
+Confused: mixed up which overload needed the string vs. the length (.length()) when applying Insert vs Delete commands in Undo() — swapped it once before landing on the right pairing
+
+Open question: when does a plain setter make sense vs. named methods like InsertText/DeleteText — is there a general rule beyond "does it need to protect an invariant"?
+
+## Day 21 — 2026-08-23
+
+Learned: completed and compiled the full Undo System portfolio piece end-to-end
+(CommandStack + LogQueue + EditorSession/TextEditor inheritance, all five
+TextEditor methods) — final version saved as undo-system.cpp
+
+Confused: none new today — Day 20's open question (setter vs. named-method
+design) still stands as ongoing
+
+Open question: when does a plain setter make sense vs. named methods like
+InsertText/DeleteText — is there a general rule beyond "does it need to
+protect an invariant"?
