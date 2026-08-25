@@ -1,0 +1,48 @@
+DAY 22 — RATE OF CHANGE EXERCISES
+Work by hand. No calculator needed except for arithmetic checks.
+
+1. An object moves from x=0m to x=12m over 3 seconds. Find average velocity.
+
+   12m/3s = 4 m/s
+
+2. An object moves from x=50m to x=20m over 5 seconds. Find average velocity.
+   (Hint: what does a negative velocity mean physically?)
+
+   -30m/5s = -6 m/s (moving in reverse)
+
+3. A UE5 actor's Tick() runs with DeltaTime = 0.02 seconds and Velocity = 10 units/sec.
+   How far does it move in that single tick?
+
+   10 units/sec * 0.02 sec = 0.2 units
+
+4. Same actor as Q3, but the game hitches and DeltaTime = 0.25 for one frame instead
+   of the usual ~0.016. How far does it move in that one tick? What visible problem
+   could this cause in a fast-moving object (e.g. a bullet)?
+
+   10 u/s * 0.25 s = 2.5 units (this can cause the projectile to suddenly speed up for a tick causing breaking coherence)
+   //Added correction: The sudden large increment can cause it to skip the wall so from before the wall and land past it creating collision problems
+
+5. Position samples: at t=1s, x=4m. At t=3s, x=16m. Compute the average velocity
+   between these two samples.
+
+   12m/2s = 6 m/s
+
+6. Conceptual: explain in your own words why "average rate of change over 4 seconds"
+   is NOT the same thing as "instantaneous velocity at t=2 seconds." Give a concrete
+   scenario where they'd clearly differ (e.g. a car that speeds up partway through).
+
+   So a punch for example accelerates as it goes but a snap at the end would have a faster instantaneous velocity compared to right before
+   Average is over the entire time between the two positions as instantaneous is the velocity at a specific time
+   //Added correction: Average blends the slow and fast parts of the movement into a single average, while instantaneous velocity only cares about the value at one specific moment
+
+7. Conceptual: why does multiplying movement by DeltaTime (instead of a fixed
+   constant like 1) make a game's movement framerate-independent? What would go
+   wrong on a 30fps machine vs a 144fps machine if you used a fixed constant instead?
+
+   The velocity would be different DelatTime calculates the necessary number to create the velocity we need at each frame, making the game framerate-independent
+   //Added correction: A 30fps machine would be at 150units/sec as 144fps would be 720units/sec without DeltaTime calculating the necessary number on each frame. Like so DeltaTime will adjust to keep both results to 5(or near enough) so is necessary for framerate-independance
+
+8. A velocity-from-position calculation divides by Δtime. Under what real
+   circumstance could Δtime be exactly 0, and what must the code do to stay safe?
+
+   Right at the start of the movement, so we must have a DeltaTime>small epsilon (0.001f or a value that is judged large enough to be safe)

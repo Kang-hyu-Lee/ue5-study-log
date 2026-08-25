@@ -1,0 +1,80 @@
+WEEK 4 CHEAT SHEET -- condensed reference, no re-teach
+
+=====================================================
+MONDAY -- polymorphism/virtual + rate of change
+=====================================================
+virtual: base class function marked virtual -> call through base pointer/ref dispatches to
+  the ACTUAL derived type's version at runtime, not the pointer's declared type.
+Without virtual: base pointer always calls base version regardless of real object type.
+override keyword: marks intent to override a virtual base function; compiler errors if
+  signature doesn't actually match a base virtual function (catches typos).
+Syntax: virtual ReturnType FuncName(params); (base) / ReturnType FuncName(params) override {} (derived)
+
+Rate of change = how fast a quantity changes relative to another (usually time).
+Average rate of change over [t1,t2] = (P(t2) - P(t1)) / (t2 - t1)
+Instantaneous rate of change = derivative = rate of change at one exact point (limit as
+  interval shrinks to 0).
+Position -> rate of change -> Velocity -> rate of change -> Acceleration.
+Constant velocity: Position(t) = v*t + StartPosition
+
+=====================================================
+TUESDAY -- binary trees + unique_ptr + vector/matrix review
+=====================================================
+BST (Binary Search Tree): each node has <= 2 children. Left subtree values < node value.
+  Right subtree values > node value.
+struct TreeNode { T Value; TreeNode* Left; TreeNode* Right; };
+In-order traversal (Left, Node, Right) -> always visits BST values in SORTED order.
+Pre-order (Node, Left, Right) / Post-order (Left, Right, Node).
+
+unique_ptr<T>: smart pointer, auto-deletes owned object when it goes out of scope.
+  Cannot be copied (only moved via std::move) -- enforces single ownership.
+  make_unique<T>(args) creates one.
+
+Vector magnitude: |V| = sqrt(x^2 + y^2 [+ z^2])
+Normalize: V / |V|  (unit vector, length 1)
+Dot product: A.B = AxBx + AyBy [+ AzBz] -- scalar; relates to angle between vectors (cos).
+Cross product (3D only): A x B = vector perpendicular to both A and B.
+2D Rotation matrix (angle theta): [[cos(t), -sin(t)], [sin(t), cos(t)]]
+90-degree rotation: [[0,-1],[1,0]]   |   180-degree: negates both x and y.
+Matrix multiply is NOT commutative: A*B != B*A (order matters -- rotate-then-translate !=
+  translate-then-rotate).
+World position = Rotate(LocalPosition) + ParentWorldPosition (apply rotation before translation).
+Orthogonal (pure rotation) matrix: R^T = R^-1 (transpose = inverse, cheap to "undo").
+
+=====================================================
+WEDNESDAY -- templates
+=====================================================
+template<typename T> ReturnType FuncName(T param) {...}  -- one definition, compiler generates
+  a concrete version for each type actually used (template instantiation).
+template<typename T> class ClassName { T Member; ... };  -- same idea for classes.
+Solves: writing the same struct/class logic once for int, once for string, once for Command
+  (exactly the CommandStack/LogQueue duplication from Day 20 -- templates remove that).
+Type deduction: compiler infers T from arguments; mixing incompatible types in one call
+  (Max("a", 5)) fails because no single T fits both.
+
+=====================================================
+THURSDAY -- const correctness
+=====================================================
+const member function: ReturnType FuncName(params) const {...} -- promises no member variable
+  gets modified inside. Compiler enforces this (won't compile if body assigns to a member).
+Mark const: any function that only READS state (getters, IsEmpty, IsFull, print functions).
+Do NOT mark const: any function that modifies state (Push, Pop, setters, Insert/Delete/Undo).
+const T& param: caller promises not to modify the referenced object -- lets you pass by
+  reference (no copy) while still guaranteeing safety.
+Calling a non-const method on a const reference/object = compile error (compiler can't
+  verify it won't mutate).
+mutable member: allows modification even inside a const function -- legitimate use: caching
+  a computed value without changing the object's logical/observable state.
+
+=====================================================
+FRIDAY -- mixed timed review
+=====================================================
+Reverse linked list (iterative): track Prev/Current/Next, reverse ->Next pointer per node,
+  advance all three, return Prev as new head.
+Recursion base case + recursive case: always define the smallest solvable case first.
+Balanced parentheses: push opening brackets onto a stack; on closing bracket, stack must be
+  non-empty and its top must match; stack must be empty at the end.
+Tree height/balance: Height(Node) = 1 + max(Height(Left), Height(Right)); balanced if left/
+  right height difference <= 1 at every node.
+Queue from two stacks: InStack for enqueue; on dequeue, if OutStack empty, drain InStack into
+  OutStack (reverses order twice = FIFO), then pop OutStack.

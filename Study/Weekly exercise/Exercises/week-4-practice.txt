@@ -1,0 +1,100 @@
+WEEK 4 PRACTICE SHEET (Days 22-26, Mon-Fri)
+Handwritten, attempt before checking week-4-answer-key.txt
+
+=====================================================
+MONDAY -- 6 coding, 10 math
+=====================================================
+
+CODING (polymorphism / virtual functions -- new this week)
+C1. Write a base class Shape with a virtual function GetArea() returning 0.
+C2. Write a derived class Circle : public Shape with a member Radius and an override of GetArea().
+C3. Given Shape* S = new Circle(5); what does S->GetArea() call without virtual vs with virtual? Explain in a comment.
+C4. Write a derived class Square : public Shape with Side and an override of GetArea().
+C5. Write a function PrintArea(Shape* S) that calls S->GetArea() and prints it. Call it with a Circle* and a Square*.
+C6. What keyword must a derived class use to explicitly mark an overriding function (hint: not required pre-C++11, but good practice)? Add it to Circle's and Square's GetArea().
+
+MATH (rate of change / calculus intuition -- new this week)
+M1. A ball's position is P(t) = 3t. What is its rate of change (speed)?
+M2. P(t) = 5t + 2. What is the rate of change?
+M3. If position changes from 10 to 25 over 5 seconds, what is the average rate of change?
+M4. P(t) = t^2. Estimate the rate of change between t=1 and t=2 using (P(2)-P(1))/(2-1).
+M5. Same function P(t) = t^2, estimate rate of change between t=2 and t=3.
+M6. What does it mean if the rate of change is negative? Give a movement example.
+M7. What does it mean if the rate of change is 0?
+M8. A car's velocity is constant at 10 m/s. What is its position function if it starts at position 0?
+M9. If Position(t) = 4t^3, what physical quantity does the rate of change represent (in gamedev terms)?
+M10. True/False: rate of change is the same as "derivative" -- if true, what does "instantaneous" add to that idea?
+
+=====================================================
+TUESDAY -- 6 coding, 10 math
+=====================================================
+
+CODING (binary trees / smart pointer concept -- new this week)
+C7. Write a struct TreeNode with an int Value and two children pointers (Left, Right).
+C8. Write a function InsertNode(TreeNode* Root, int Value) that inserts into a BST (recursive).
+C9. Write a function that counts total nodes in a binary tree (recursive).
+C10. What problem does unique_ptr solve compared to a raw pointer with manual delete? (comment answer)
+C11. Rewrite your TreeNode's children as unique_ptr<TreeNode> instead of raw pointers -- what changes about how you assign to Left/Right?
+C12. Why can't you copy a unique_ptr (only move it)? What real-world ownership idea does this enforce?
+
+MATH (vectors + matrices review -- application tier, prior weeks covered)
+M11. Given vector A = (3, 4), find its magnitude.
+M12. Normalize vector A = (3, 4).
+M13. Given vectors A = (1, 2) and B = (3, -1), compute A + B and A . B (dot product).
+M14. Build the 2D rotation matrix for 90 degrees and apply it to point (1, 0).
+M15. Given a 2x2 matrix [[2,0],[0,2]], what geometric transform does it represent?
+M16. Multiply matrices [[1,2],[3,4]] and [[5,6],[7,8]].
+M17. Given local position (2,0) and a parent object rotated 90 degrees at world position (5,5), find the world position.
+M18. Cross product of A=(1,0,0) and B=(0,1,0) -- what does the result represent geometrically?
+M19. Why is matrix multiplication NOT commutative (A*B != B*A) -- explain with a rotation + translation example.
+M20. Given a rotation matrix R and its transpose R^T, what special property do orthogonal rotation matrices have relating R^T to R^-1?
+
+=====================================================
+WEDNESDAY -- 6 coding, 2 math
+=====================================================
+
+CODING (templates -- new this week)
+C13. Write a template function Max(T A, T B) that returns the larger of two values of any type.
+C14. Write a template class Box<T> holding a single value of type T, with a Get() and Set().
+C15. Instantiate Box<int> and Box<string> from your Box<T> -- what code does the compiler generate for each?
+C16. Why do templates avoid the "write CommandStack once for Command, once for int" duplication you did in Day 20's portfolio?
+C17. Write a template function Swap(T& A, T& B) that swaps two values in place.
+C18. What error do you get if you call Max("hello", 5) -- mixing two different types T? Why does that fail?
+
+MATH (vectors + matrices review continued -- application tier)
+M21. A camera is at world position (0,0,10) looking down -Z. A point is at local space (1,0,0) relative to camera. What's a plausible use case for converting this to world space?
+M22. Given two 2D rotation matrices for angles A and B, what single angle does their product represent?
+
+=====================================================
+THURSDAY -- 6 coding, 3 math
+=====================================================
+
+CODING (const correctness -- new this week)
+C19. Given class Player with a private int Health and a getter GetHealth(), should GetHealth() be marked const? Why?
+C20. Write a function void PrintPlayer(const Player& P) -- what does the const buy you here that a plain Player& wouldn't?
+C21. What error would you get if PrintPlayer tried to call a non-const method on P?
+C22. Rewrite CommandStack's IsEmpty/IsFull/Pop from Day 20 -- mark every method const that should be, and explain in a comment why Push cannot be const.
+C23. What is a "const-correct" codebase and why do UE5 style guides care about it (hint: think function signatures as documentation)?
+C24. Write a class with a mutable member (research what mutable means) -- give one legitimate use case (hint: caching).
+
+MATH (BST + tree traversal support, application tier)
+M23. Given a BST with values 5,3,8,1,4,7,9 inserted in that order, draw the tree.
+M24. Write the in-order traversal sequence for that tree -- what property does in-order traversal always produce for a BST?
+M25. Write the pre-order and post-order traversal sequences for the same tree.
+
+=====================================================
+FRIDAY -- 6 coding, 3 math
+=====================================================
+
+CODING (mixed timed review -- arrays/linked lists/stacks/trees/recursion, spaced repetition)
+C25. Timed (5 min): reverse a singly linked list iteratively.
+C26. Timed (5 min): implement a recursive factorial function with a base case.
+C27. Timed (5 min): implement IsBalanced(TreeNode* Root) checking if left/right subtree heights differ by at most 1.
+C28. Timed (5 min): implement a stack-based check for balanced parentheses in a string.
+C29. Timed (5 min): find the maximum value in an array using a loop (no built-in max function).
+C30. Timed (5 min): implement a queue using two stacks (conceptual/pseudocode is fine if time runs out).
+
+MATH (mixed timed review)
+M26. Timed: compute the dot product of (2,3,1) and (4,-1,2).
+M27. Timed: given P(t) = 2t^2 + 3, find the average rate of change from t=0 to t=2.
+M28. Timed: apply a 180-degree 2D rotation matrix to point (3, 4) -- verify by inspection (what should 180 degrees always do to a point?).

@@ -1,0 +1,42 @@
+DAY 22 — RATE OF CHANGE SOLUTIONS
+
+1. velocity = (12 - 0) / 3 = 4 m/s
+
+2. velocity = (20 - 50) / 5 = -30 / 5 = -6 m/s
+   Negative velocity means motion in the negative direction (moving toward
+   decreasing x, i.e. "backward" relative to however you defined positive x).
+
+3. distance = velocity * deltaTime = 10 * 0.02 = 0.2 units
+
+4. distance = 10 * 0.25 = 2.5 units.
+   Problem: a hitch causes one huge movement jump instead of many small smooth
+   ones. For a fast object (bullet), this can cause it to "teleport" past a thin
+   wall or a collision volume entirely between one frame and the next — this is
+   the classic "tunneling" bug, and it's a direct, real consequence of large
+   DeltaTime spikes.
+
+5. velocity = (16 - 4) / (3 - 1) = 12 / 2 = 6 m/s
+
+6. Average rate of change smooths out everything that happened DURING the
+   interval into one number. If a car starts at rest and accelerates to 60mph
+   by the end of a 4-second interval, the average velocity over those 4 seconds
+   is some middle value — but the car's ACTUAL speed at t=2s (halfway) could be
+   very different from that average, because it was still speeding up. Average
+   rate of change hides the shape of the motion inside the interval;
+   instantaneous rate (calculus) captures the exact value at one instant.
+
+7. Multiplying by DeltaTime scales movement to actual elapsed real-world time,
+   not to "how many frames happened." A 30fps machine has ~0.033s per frame; a
+   144fps machine has ~0.007s per frame. If you used a FIXED constant instead of
+   DeltaTime, the 144fps machine would call the movement code ~4.7x more often
+   per second, so the object would move ~4.7x farther per second than on the
+   30fps machine — same input, wildly different gameplay outcome. Multiplying by
+   DeltaTime cancels this out: distance per real-world second stays the same
+   regardless of frame rate.
+
+8. Δtime can be 0 on the very first frame before any time has been measured, or
+   during an explicit pause where frame time isn't being accumulated. Code that
+   DIVIDES by Δtime (e.g. deriving velocity from two position samples) must guard
+   against this explicitly — e.g. `if (DeltaTime > SMALL_EPSILON) { ... } else { skip
+   or use a fallback }` — otherwise it's a division by zero, producing inf/NaN in
+   float math, which then silently corrupts anything downstream that uses that value.

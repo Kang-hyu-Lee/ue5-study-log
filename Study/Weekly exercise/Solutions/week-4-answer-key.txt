@@ -1,0 +1,92 @@
+WEEK 4 ANSWER KEY (Days 22-26)
+Check only after attempting on paper.
+
+=====================================================
+MONDAY
+=====================================================
+C1. class Shape { public: virtual double GetArea() { return 0; } };
+C2. class Circle : public Shape { double Radius; public: Circle(double R):Radius(R){} double GetArea() override { return 3.14159 * Radius * Radius; } };
+C3. Without virtual: S->GetArea() calls Shape's version always (slicing-like behavior through a pointer). With virtual: calls Circle's version -- correct dispatch based on actual object type, not pointer type.
+C4. class Square : public Shape { double Side; public: Square(double S):Side(S){} double GetArea() override { return Side * Side; } };
+C5. void PrintArea(Shape* S) { cout << S->GetArea() << endl; } -- called with new Circle(5) and new Square(4), each prints its own correct area because GetArea is virtual.
+C6. override keyword. Circle: double GetArea() override {...}. Compiler errors if this doesn't actually override a base virtual function (catches typos in signature).
+
+M1. 3 (constant rate)
+M2. 5
+M3. (25-10)/5 = 3
+M4. (4-1)/(2-1) = 3
+M5. (9-4)/(3-2) = 5
+M6. Moving backward / position decreasing over time, e.g. a character walking left (negative velocity).
+M7. Not moving -- stationary, velocity 0.
+M8. Position(t) = 10t
+M9. Represents velocity (rate of change of position); a further rate of change of velocity would be acceleration.
+M10. True -- derivative is the INSTANTANEOUS rate of change at one exact point, vs. average rate of change over an interval (like M3/M4 which are approximations using two points).
+
+=====================================================
+TUESDAY
+=====================================================
+C7. struct TreeNode { int Value; TreeNode* Left = nullptr; TreeNode* Right = nullptr; };
+C8. TreeNode* InsertNode(TreeNode* Root, int Value) { if(Root==nullptr) return new TreeNode{Value}; if(Value < Root->Value) Root->Left = InsertNode(Root->Left, Value); else Root->Right = InsertNode(Root->Right, Value); return Root; }
+C9. int CountNodes(TreeNode* Root) { if(Root==nullptr) return 0; return 1 + CountNodes(Root->Left) + CountNodes(Root->Right); }
+C10. unique_ptr automatically calls delete when it goes out of scope -- eliminates forgetting delete (memory leaks) and eliminates double-delete/dangling pointer bugs from manual management.
+C11. unique_ptr<TreeNode> Left; assignment becomes Root->Left = make_unique<TreeNode>(...) or std::move(existingUniquePtr) instead of raw new/assignment -- ownership transfers explicitly via move.
+C12. Copying would mean two owners both think they're responsible for deleting the same memory -- double-free. unique_ptr enforces "exactly one owner" -- matches real-world exclusive ownership (one key to one lock).
+
+M11. sqrt(3^2+4^2) = 5
+M12. (3/5, 4/5) = (0.6, 0.8)
+M13. A+B = (4,1). A.B = (1*3)+(2*-1) = 3-2 = 1
+M14. 90-degree rotation matrix [[0,-1],[1,0]] applied to (1,0) = (0,1)
+M15. Uniform scale by factor 2
+M16. [[1*5+2*7, 1*6+2*8],[3*5+4*7, 3*6+4*8]] = [[19,22],[43,50]]
+M17. Rotate (2,0) by 90 degrees -> (0,2), then add parent world position (5,5) -> (5,7)
+M18. (0,0,1) -- a vector perpendicular to both A and B (points "up" out of the XY plane), magnitude relates to area of parallelogram formed by A and B.
+M19. Rotating then translating a point gives a different result than translating then rotating -- e.g. rotate (1,0) 90 degrees then move +5 on X = (0,1)+(5,0)=(5,1); move first then rotate = rotate(6,0) 90 degrees = (0,6). Different results, order matters.
+M20. R^T = R^-1 for orthogonal (pure rotation) matrices -- transpose is the same as the inverse, which is why rotation matrices are cheap to "undo" (no expensive matrix inversion needed).
+
+=====================================================
+WEDNESDAY
+=====================================================
+C13. template<typename T> T Max(T A, T B) { return (A > B) ? A : B; }
+C14. template<typename T> class Box { T Value; public: void Set(T V){Value=V;} T Get(){return Value;} };
+C15. Compiler generates a separate, fully concrete version of Box for each type used (Box<int>, Box<string>) at compile time -- called template instantiation.
+C16. Templates let you write the stack/queue logic once, and the compiler generates a version for whatever type you use it with (Command, int, string, etc.) -- no manual copy-paste-and-rename needed like CommandStack vs a hypothetical IntStack.
+C17. template<typename T> void Swap(T& A, T& B) { T Temp = A; A = B; B = Temp; }
+C18. Compile error -- T can't be deduced as a single consistent type when arguments are a string literal and an int; template type deduction requires matching types unless explicitly specified.
+
+M21. Converting a point from camera-local space to world space is needed to know where that point actually is in the game world -- e.g. spawning a bullet slightly in front of the camera.
+M22. Angle A + Angle B (rotation matrices compose by adding their angles).
+
+=====================================================
+THURSDAY
+=====================================================
+C19. Yes -- GetHealth() only reads Health, never modifies it, so it should be const to allow calling it on const Player objects/references.
+C20. const Player& means PrintPlayer promises not to modify P -- callers can pass a const Player& (or trust that their own const objects are safe to pass) without risk PrintPlayer changes something.
+C21. Compile error -- "passing const object as this argument discards qualifiers" or similar, because a const reference can't call a non-const method (compiler can't guarantee no mutation happens).
+C22. bool IsEmpty() const, bool IsFull() const, Command Pop() -- Pop CAN still be const-marked itself IF it doesn't modify member state... but it does modify Top, so Pop is NOT const. Push modifies Comms/Top directly (Top++, array write) so it cannot be const -- const promises no member modification, and Push's whole job is to modify members.
+C23. A const-correct codebase marks every function that doesn't modify state as const -- lets other code and other programmers trust function signatures as accurate documentation of what can/can't change data, and enables passing const references safely everywhere.
+C24. class Cache { mutable int CachedValue = -1; mutable bool IsCached = false; public: int GetValue() const { if(!IsCached){ CachedValue = ExpensiveCompute(); IsCached = true; } return CachedValue; } }; -- mutable allows modifying these specific members even inside a const function, useful for internal caching that doesn't logically change the object's observable state.
+
+M23.
+        5
+      /   \
+     3     8
+    / \     \
+   1   4     9
+      (7 goes under 8's left: 8's left = 7)
+  Correct tree: 5 -> left 3 (left 1, right 4), right 8 (left 7, right 9)
+M24. In-order: 1,3,4,5,7,8,9 -- always produces sorted order for a BST.
+M25. Pre-order: 5,3,1,4,8,7,9. Post-order: 1,4,3,7,9,8,5.
+
+=====================================================
+FRIDAY
+=====================================================
+C25. Node* Reverse(Node* Head){ Node* Prev=nullptr; while(Head){ Node* Next=Head->Next; Head->Next=Prev; Prev=Head; Head=Next; } return Prev; }
+C26. int Factorial(int N){ if(N<=1) return 1; return N * Factorial(N-1); }
+C27. bool IsBalanced(TreeNode* Root){ if(!Root) return true; int LH=Height(Root->Left), RH=Height(Root->Right); return abs(LH-RH)<=1 && IsBalanced(Root->Left) && IsBalanced(Root->Right); }
+C28. bool IsBalancedParens(string S){ ArrayStack<char> St; for(char C : S){ if(C=='(') St.Push(C); else if(C==')'){ if(St.IsEmpty()) return false; St.Pop(); } } return St.IsEmpty(); }
+C29. int Max=Arr[0]; for(int I=1;I<Size;I++){ if(Arr[I]>Max) Max=Arr[I]; }
+C30. Two stacks: InStack for enqueue (push directly), OutStack for dequeue (if OutStack empty, pop everything from InStack and push onto OutStack, then pop OutStack) -- reverses order twice, restoring FIFO from two LIFO stacks.
+
+M26. (2*4)+(3*-1)+(1*2) = 8-3+2 = 7
+M27. (P(2)-P(0))/(2-0) = (11-3)/2 = 4
+M28. 180-degree rotation always negates both coordinates: (3,4) -> (-3,-4). Verify: [[-1,0],[0,-1]] * (3,4) = (-3,-4).
