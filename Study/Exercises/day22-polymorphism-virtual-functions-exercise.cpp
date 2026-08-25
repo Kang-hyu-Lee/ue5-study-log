@@ -21,7 +21,36 @@ using namespace std;
 //     call PrintContent() through the base pointer, confirm you get
 //     the TextEditor version (predict the output BEFORE running)
 // =====================================================================
+class EditorSession
+{
+protected:
+    string Content;
+
+public:
+    EditorSession(string ini):Content(ini) { PrintContent(); };
+
+    virtual ~EditorSession(){
+        cout << "EditorSession destroyed" << endl;
+    }
+
+    virtual void PrintContent() const {
+        cout << Content << endl;
+    }
+};
+
+class TextEditor : public EditorSession
+{
+public:
+    TextEditor(string ini) : EditorSession(ini) {}
+
+    ~TextEditor(){
+        cout << "TextEditor destroyed" << endl;
+    }
     
+    void PrintContent() const override{
+        cout << "[TextEditor]" << Content << endl;
+    }
+};
 
 // =====================================================================
 // PROBLEM 2 — Add a second derived class
@@ -34,7 +63,15 @@ using namespace std;
 //     PrintContent() on each through the base pointer — confirm each
 //     one prints its OWN version, not the base version
 // =====================================================================
-
+class CodeEditor : public EditorSession
+{
+public:
+    CodeEditor(string ini) : EditorSession(ini) {}
+    
+    void PrintContent() const override{
+        cout << "[CodeEditor]" << Content << endl;
+    }
+};
 
 // =====================================================================
 // PROBLEM 3 — Virtual destructor
@@ -49,7 +86,7 @@ using namespace std;
 //     delete, observe the difference
 //   - Write a one-line comment explaining what changed and why
 // =====================================================================
-
+// the virtual keyword made it check the actual type at runtime to reach for the TextEditor destructor
 
 // =====================================================================
 // PROBLEM 4 — Object slicing, reproduced on purpose
@@ -65,6 +102,10 @@ using namespace std;
 //     the concept file's Section 3
 // =====================================================================
 
+void ShowIt(EditorSession Session){
+    Session.PrintContent();
+}
+//it will create a copy of input as a EditorSession type even if I input a TextEditor so will follow that PrintContent() from EditorSession
 
 // =====================================================================
 // PROBLEM 5 — Constructor virtual-call edge case
@@ -77,12 +118,29 @@ using namespace std;
 //     prediction as a comment BEFORE running, then run and confirm
 //     against the concept file's Section 6
 // =====================================================================
-
+// In this case TextEditor hasn't been constructed yet because we are still in the EditorSession's constructor so it will print as a EditorSession
 
 int main()
 {
     // Build your test scenarios for Problems 1–5 here, one at a time.
     // Predict output in a comment above each call before running it.
+    EditorSession* Ptr = new TextEditor("Hello World");
+    Ptr->PrintContent();
 
+    EditorSession* Arr[2];
+    EditorSession* Ptr2 = new CodeEditor("Hello World");
+
+    Arr[0] = Ptr;
+    Arr[1] = Ptr2;
+
+    for(int i=0; i<2; i++){
+        Arr[i]->PrintContent();
+    }
+
+    delete Ptr;
+    delete Ptr2;
+    
+    TextEditor Editor("Hello World");
+    ShowIt(Editor);
     return 0;
 }

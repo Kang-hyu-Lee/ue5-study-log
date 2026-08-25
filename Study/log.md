@@ -200,3 +200,10 @@ design) still stands as ongoing
 Open question: when does a plain setter make sense vs. named methods like
 InsertText/DeleteText — is there a general rule beyond "does it need to
 protect an invariant"?
+
+## Day 22 — 2026-08-25
+Learned: rate of change / velocity as Δposition/Δtime, DeltaTime's role in framerate-independent movement, virtual functions & dynamic dispatch (vtables), virtual destructors, object slicing, and the constructor virtual-call edge case — all demonstrated on my own EditorSession/TextEditor hierarchy
+
+Confused: initially unsure why epsilon comparison is needed instead of != 0 for float DeltaTime checks; also mixed up "dangling pointer" vs "memory leak" terminology before clarifying
+
+Open question: how does this pattern extend to UE5's actual AActor/APawn/ACharacter hierarchy — are BeginPlay/Tick virtual for the exact same reasons?

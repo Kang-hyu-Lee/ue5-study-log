@@ -107,3 +107,5 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 **Client prediction / Server reconciliation** — in networked games, the client guesses/simulates the result of your input immediately (prediction) before the server confirms it, then corrects (reconciles) if the server disagrees — done to hide network latency.
 
 **Build (debug vs shipping)** — a debug build includes extra checks/logging and runs slower, meant for development; a shipping build is optimized and stripped down, meant for players.
+
+**Tunneling** — a fast-moving object skipping past a thin collider because a large position jump in one physics tick means the collision check never samples any point between the before/after positions. Ex: a bullet with a large per-tick movement passing straight through a thin wall with no collision registering. (flagged Day 22)
