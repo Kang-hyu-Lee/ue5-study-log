@@ -207,3 +207,10 @@ Learned: rate of change / velocity as Δposition/Δtime, DeltaTime's role in fra
 Confused: initially unsure why epsilon comparison is needed instead of != 0 for float DeltaTime checks; also mixed up "dangling pointer" vs "memory leak" terminology before clarifying
 
 Open question: how does this pattern extend to UE5's actual AActor/APawn/ACharacter hierarchy — are BeginPlay/Tick virtual for the exact same reasons?
+
+## Day 23 — 2026-08-25
+Learned: binary tree structure (nodes, root/leaf/depth/height), recursive leaf-counting and max-finding via return-value combining (no external counters), unique_ptr ownership/RAII and why it forces move instead of copy
+
+Confused: initially defaulted to loop-thinking on FindMax (tried tracking a running max variable instead of combining three return values); also mixed up "node is null" vs "node is a leaf" as the same check early on
+
+Open question: when would you actually choose optional<int> (or an out-parameter) over a sentinel value like INT_MIN in real code — is it always worth the extra complexity, or only past a certain team/codebase size?
