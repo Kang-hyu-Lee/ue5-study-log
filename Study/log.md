@@ -214,3 +214,10 @@ Learned: binary tree structure (nodes, root/leaf/depth/height), recursive leaf-c
 Confused: initially defaulted to loop-thinking on FindMax (tried tracking a running max variable instead of combining three return values); also mixed up "node is null" vs "node is a leaf" as the same check early on
 
 Open question: when would you actually choose optional<int> (or an out-parameter) over a sentinel value like INT_MIN in real code — is it always worth the extra complexity, or only past a certain team/codebase size?
+
+## Day 24 — 2026-08-27
+Learned: templates (compile-time instantiation vs runtime virtual dispatch, operator requirements per type, class templates via Pair<T>); pointer vs reference vs value-parameter distinctions reviewed against FVector2D; caching a repeated computation (GetMagnitude) instead of recalculating it per branch
+
+Confused: initially mixed up the Cross2D formula terms (multiplied wrong components before catching it against the stated formula)
+
+Open question: how would operator overloading actually be written for a struct like FVector2D, to give it its own < or +?
