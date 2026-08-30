@@ -221,3 +221,11 @@ Learned: templates (compile-time instantiation vs runtime virtual dispatch, oper
 Confused: initially mixed up the Cross2D formula terms (multiplied wrong components before catching it against the stated formula)
 
 Open question: how would operator overloading actually be written for a struct like FVector2D, to give it its own < or +?
+
+## Day 25 — 2026-08-28
+
+Learned: BST insert/reattachment mechanics (Root differs per recursive call level, NewValue stays constant across the chain), why return Root is required at every level (not just the base case) to reattach subtrees, PostOrder requires both children visited before self, recursive FindMin logic (sentinel value must lose the comparison — INT_MAX for finding a min, only left subtree needs checking due to BST invariant), const correctness (pointer-to-const vs const-pointer vs both, read right-to-left), const member functions and why they block even no-op member writes, Epic naming prefixes (A/U/F/T/E/I/S/b) tied to actual category definitions, not just the letter
+
+Confused: initially thought NewValue changed per recursive call instead of Root changing; double-counted Root in CountNodes with +1 in both branches, then wrote two return statements in a row (dead code) before landing on the fix; misordered PostOrder by visiting self before right child; used > instead of < when writing FindMin recursively (backwards for finding a minimum); loose enum definition ("naming variables" instead of "fixed set of named categories")
+
+Open question: when does a plain BST's O(log n) guarantee actually get used in production vs falling back to std::map or a self-balancing tree instead?
