@@ -229,3 +229,11 @@ Learned: BST insert/reattachment mechanics (Root differs per recursive call leve
 Confused: initially thought NewValue changed per recursive call instead of Root changing; double-counted Root in CountNodes with +1 in both branches, then wrote two return statements in a row (dead code) before landing on the fix; misordered PostOrder by visiting self before right child; used > instead of < when writing FindMin recursively (backwards for finding a minimum); loose enum definition ("naming variables" instead of "fixed set of named categories")
 
 Open question: when does a plain BST's O(log n) guarantee actually get used in production vs falling back to std::map or a self-balancing tree instead?
+
+## Day 26 — 2026-08-29
+
+Learned: In-order/Pre-order/Post-order name-to-order mapping (was reversed on all three at recall check) — fixed via the "root's position relative to children" mnemonic; BST validity requires range-narrowing recursion (Min/Max carried down as plain value params, not references) since checking only immediate parent-child pairs misses violations further down a subtree; reference parameters are needed when recursive calls must share and mutate one running value (in-order "previous value" tracking), but plain value params are correct when each recursive call needs its own independent value (Min/Max narrowing); std::unique_ptr<T> replaces a raw T* directly — no extra pointer layer needed; const on a member function restricts the implicit `this` pointer, not the fields themselves, which is why const InventoryItem& callers can't call non-const member functions.
+
+Confused: initial instinct to derive BST bounds locally from a node's own children (Root->Left/Root->Right) instead of carrying constraints down from ancestors several levels up; mixed up the comma operator for && in a leaf-check condition; briefly reached for std::vector before remembering it hasn't been taught yet.
+
+Open question: for IsValidBST, is the range-bound (Min/Max) approach or the in-order-traversal approach generally preferred in practice/interviews, or is it purely a style/readability call once both are O(n)?
