@@ -245,3 +245,10 @@ Learned: full linked-list-backed class design end to end — private member owne
 Confused: initially conflated three different consts in one signature (return-pointer const, parameter const, trailing member-function const) — each protects a different thing, resolved by breaking the signature into pieces.
 
 Open question: is nulling Head/Tail before or after delete ever more than a style habit — is there a real Epic/UE5 codebase convention on ordering, or does it only matter once destructors/RAII get more complex?
+
+## Day 28 — 2026-08-30
+Learned: Phase Gate passed — foundations (pointers, structs, linked lists, trees, vectors/matrices) solid enough for Phase 2. Identified carry-over debt: tree traversal order recall, IsValidBST bounds logic, Epic naming prefix placement.
+
+Confused: n/a (rest/gate day)
+
+Open question: exact Week 5 Phase 2 daily topic sequence — to be built once install is confirmed
