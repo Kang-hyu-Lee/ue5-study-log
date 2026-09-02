@@ -237,3 +237,11 @@ Learned: In-order/Pre-order/Post-order name-to-order mapping (was reversed on al
 Confused: initial instinct to derive BST bounds locally from a node's own children (Root->Left/Root->Right) instead of carrying constraints down from ancestors several levels up; mixed up the comma operator for && in a leaf-check condition; briefly reached for std::vector before remembering it hasn't been taught yet.
 
 Open question: for IsValidBST, is the range-bound (Min/Max) approach or the in-order-traversal approach generally preferred in practice/interviews, or is it purely a style/readability call once both are O(n)?
+
+## Day 27 — 2026-08-30
+
+Learned: full linked-list-backed class design end to end — private member ownership (no Node*& needed once Head lives inside the class), deep const on pointer return types (const T* vs trailing const on the function), value vs pointer storage in a node and why it avoids dangling risk, Tail bookkeeping across every removal case, destructor traversal pattern (advance before delete).
+
+Confused: initially conflated three different consts in one signature (return-pointer const, parameter const, trailing member-function const) — each protects a different thing, resolved by breaking the signature into pieces.
+
+Open question: is nulling Head/Tail before or after delete ever more than a style habit — is there a real Epic/UE5 codebase convention on ordering, or does it only matter once destructors/RAII get more complex?
