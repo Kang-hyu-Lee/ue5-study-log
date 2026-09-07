@@ -252,3 +252,15 @@ Learned: Phase Gate passed — foundations (pointers, structs, linked lists, tre
 Confused: n/a (rest/gate day)
 
 Open question: exact Week 5 Phase 2 daily topic sequence — to be built once install is confirmed
+
+## Day 29 — 2026-09-06
+
+Learned: hashing pt.1 (chaining vs open addressing, load factor/resize, why O(1) is
+average-case not guaranteed), UE5 project anatomy (Source/, Build.cs, modules), #include/
+#pragma once mechanism, UCLASS()/GENERATED_BODY() and what UHT does with them
+
+Confused: initially unclear on open addressing's deletion problem (tombstones) and why
+UCLASS() needed a separate GENERATED_BODY() placeholder — both resolved after tracing
+
+Open question: still need to reconcile the wrong Visual-Studio-template .gitignore that
+got committed to the repo — need to check git log/status before overwriting it
