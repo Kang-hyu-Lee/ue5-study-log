@@ -60,6 +60,14 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 
 **vtable pointer** — a hidden pointer the compiler inserts as an extra field the moment a class/struct has any virtual function, pointing to a lookup table of that class's virtual function addresses. Ex: it's why adding a virtual function to a struct silently grows `sizeof()` and breaks raw memcpy/network replication — the extra bytes are a memory address meaningless off the local machine. *(flagged Day 15)*
 
+**std::pair** — a template type bundling two values of possibly different types, accessed via .first/.second. Ex: unordered_map's entries are std::pair<const KeyType, ValueType> under the hood. *(flagged Day 30)*
+
+**Range-based for loop** — a for-loop variant that iterates any container with .begin()/.end(), no index involved; sugar over manually walking iterators. Ex: for (auto& Pair : PlayerScores). Pitfall: inserting/erasing from a container while range-for looping over it is undefined behavior. *(flagged Day 30)*
+
+**Iterator** — a pointer-like object representing a position inside a container; dereference to get the element, advance to move forward. Ex: PlayerScores.find("Kang") returns an iterator, compared against .end() to check "not found." *(flagged Day 30)*
+
+**Template instantiation** — the compiler generating real, separate machine code for each specific type a template is used with, at compile time of the calling code — why STL container code lives entirely in headers rather than a separately-compiled .cpp. Ex: unordered_map<string,int> and unordered_map<int,int> are two different generated classes. *(flagged Day 30)*
+
 ## Industry/Career
 
 **PR (Pull Request) / Code review** — before code merges into the main codebase, someone else reviews the diff and comments/approves. Standard practice everywhere, including solo open-source contributions.
@@ -109,3 +117,9 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 **Build (debug vs shipping)** — a debug build includes extra checks/logging and runs slower, meant for development; a shipping build is optimized and stripped down, meant for players.
 
 **Tunneling** — a fast-moving object skipping past a thin collider because a large position jump in one physics tick means the collision check never samples any point between the before/after positions. Ex: a bullet with a large per-tick movement passing straight through a thin wall with no collision registering. (flagged Day 22)
+
+**Reflection** — a program's ability to inspect its own class structure (properties/functions) at runtime via generated metadata, rather than that structure only existing at compile time. Ex: a Blueprint "Set Health" node looks up Health by name in UHT-generated metadata, without knowing your C++ class at Blueprint-compile time. *(flagged Day 30)*
+
+**CreateDefaultSubobject<T>()** — a constructor-only Unreal factory function that creates a component through Unreal's own object system (GC-safe, reflected), taking a template type argument and a required unique FName identifier. Ex: MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent")); Pitfall: duplicate names between two calls in the same class crash at construction. *(flagged Day 30)*
+
+**TEXT() / FName** — TEXT() wraps a string literal to the TCHAR type UE5 expects internally; FName is Unreal's fast-comparison identifier string type (stored as a number internally, not raw text). Ex: TEXT("MeshComponent") passed directly as an FName argument. *(flagged Day 30)*
