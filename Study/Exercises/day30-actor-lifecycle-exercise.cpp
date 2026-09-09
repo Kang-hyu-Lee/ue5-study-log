@@ -57,9 +57,9 @@ public:
 //
 //   4 Tick() runs for the first time
 //   1 Constructor runs (CDO creation, at engine startup — before this session)
-//   2 BeginPlay() runs
+//   3 BeginPlay() runs
 //   5 Tick() runs for the second time
-//   3 Constructor runs again (this specific instance, when the level loads)
+//   2 Constructor runs again (this specific instance, when the level loads)
 //
 
 
@@ -81,18 +81,24 @@ AMySpawner::AMySpawner()
 
 // your corrected version (as a comment or real code, your call):
 //
+/*void AMySpawner::BeginPlay()
+{
+    Super::BeginPlay();
+    GetWorld()->SpawnActor<AActor>(SomeClass, FVector::ZeroVector, FRotator::ZeroRotator);
+}
+*/
 
 // ---------------------------------------------------------------------------
 // PROBLEM 5 — Naming convention drill
 // For each described item, write the correctly Epic-prefixed name.
 // Hint: see concept file section 7 table.
 //
-//   a) A class deriving from AActor representing a health pickup   -> ____
-//   b) A class deriving from UObject (not AActor) for an inventory manager -> ____
-//   c) A plain struct holding a damage event's data (no UObject inheritance) -> ____
-//   d) An enum for weapon types -> ____
-//   e) A boolean tracking whether the player is currently sprinting -> ____
-//   f) An interface for anything "interactable" -> ____
+//   a) A class deriving from AActor representing a health pickup   -> ____ AHealthPickup
+//   b) A class deriving from UObject (not AActor) for an inventory manager -> ____ UInventoryManager
+//   c) A plain struct holding a damage event's data (no UObject inheritance) -> ____ FDamageEvent
+//   d) An enum for weapon types -> ____ EWeaponTypes
+//   e) A boolean tracking whether the player is currently sprinting -> ____ bIsSprinting
+//   f) An interface for anything "interactable" -> ____ IInteractable
 
 // ---------------------------------------------------------------------------
 // PROBLEM 6 — SHORT ANSWER (write as a comment)
@@ -100,5 +106,5 @@ AMySpawner::AMySpawner()
 // BeginPlay()? What specifically goes wrong if you forget it, and why is
 // that kind of bug hard to notice?
 //
-// your answer:
+// your answer: AAcotr's own BeginPlay() does important internal work so skipping it will cause breaking of inherited behaviours
 //

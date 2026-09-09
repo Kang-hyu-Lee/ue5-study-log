@@ -264,3 +264,10 @@ UCLASS() needed a separate GENERATED_BODY() placeholder — both resolved after 
 
 Open question: still need to reconcile the wrong Visual-Studio-template .gitignore that
 got committed to the repo — need to check git log/status before overwriting it
+
+## Day 30 — 2026-XX-XX
+Learned: unordered_map/set syntax (insert vs operator[], find/count), std::pair/range-based-for/iterators, CreateDefaultSubobject<T>() parameters (template arg = compile-time type, FName arg = unique instance name), the actor-vs-component distinction (SpawnActor for independent world entities, CreateDefaultSubobject for parts built into an actor at compile time — not interchangeable), UCLASS/UPROPERTY/UFUNCTION and what reflection actually means, Actor lifecycle (constructor vs BeginPlay vs Tick) and why "unsafe in constructor" means "move it to BeginPlay," not "use a different function"
+
+Confused: initially conflated fixing a lifecycle-timing bug with switching functions entirely (tried translating a SpawnActor call into CreateDefaultSubobject) before separating "which function" from "when it's safe to call it" — resolved during review
+
+Open question: (yours to fill in if anything's still unsettled)
