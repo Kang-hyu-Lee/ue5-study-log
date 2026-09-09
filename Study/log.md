@@ -271,3 +271,10 @@ Learned: unordered_map/set syntax (insert vs operator[], find/count), std::pair/
 Confused: initially conflated fixing a lifecycle-timing bug with switching functions entirely (tried translating a SpawnActor call into CreateDefaultSubobject) before separating "which function" from "when it's safe to call it" — resolved during review
 
 Open question: (yours to fill in if anything's still unsettled)
+
+Addendum — hands-on debugging session:
+Learned: real UE5 build/IntelliSense workflow (Live Coding vs full rebuild, stale IntelliSense squiggles on UCLASS/GENERATED_BODY are false positives), C++ parent/Blueprint child pattern for assigning content, Blueprint references break when the referenced asset is deleted and recreated, UE_LOG-based diagnostic debugging (isolating BeginPlay-fired vs SpawnActor-succeeded vs visibility)
+
+Confused: (n/a — self-resolved via UE_LOG isolation)
+
+Open question: build the habit of scrolling a whole file top-to-bottom after edits — hit two separate duplicate-declaration bugs tonight from the same root cause
