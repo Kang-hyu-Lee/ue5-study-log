@@ -18,6 +18,16 @@
 void Problem1_WeakPtrUsage(AActor* LastAttacker)
 {
 	// TODO
+	TWeakObjectPtr<AActor> WeakRef;
+	WeakRef = LastAttacker;
+
+	if(WeakRef.IsValid())
+	{
+		AActor* Actor = WeakRef.Get();
+		UE_LOG(LogTemp, Log, TEXT("Attacker: %s"), *Actor->GetName());
+		return;
+	}
+	UE_LOG(LogTemp, Warning, TEXT("no longer valid"));
 }
 
 // ---------------------------------------------------------
@@ -26,6 +36,8 @@ void Problem1_WeakPtrUsage(AActor* LastAttacker)
 // Explain why using a raw UPROPERTY() AActor* instead of TWeakObjectPtr
 // for "LastAttacker" would be the wrong choice here.
 // TODO: write your answer as a comment.
+// Becuase we don't want the reference to keep the last attacker alive forever because a UPROPERTY() pointer makes the attacker reachable from the root set,
+// so the actor would be uncollected even after death, thus using a TWeakObjectPtr for memory 
 
 // ---------------------------------------------------------
 // PROBLEM 3 — enum class Declaration + Switch
@@ -35,6 +47,29 @@ void Problem1_WeakPtrUsage(AActor* LastAttacker)
 // for each state using a switch statement.
 // Hint: switch (State) { case EDoorState::Closed: ... break; ... }
 // TODO
+enum class EDoorState : uint8 {Closed, Open, Locked};
+
+void DoorStateSwtich(EDoorState State)
+{
+	switch(State)
+	{
+		case EDoorState::Closed:
+			UE_LOG(LogTemp, Warning, TEXT("Closed"));
+			break;
+		
+		case EDoorState::Open:
+			UE_LOG(LogTemp, Warning, TEXT("Open"));
+			break;
+		
+		case EDoorState::Locked:
+			UE_LOG(LogTemp, Warning, TEXT("Locked"));
+			break;
+		
+		default:
+			UE_LOG(LogTemp, Warning, TEXT("Door state invalid"));
+			break;
+	}
+}
 
 // ---------------------------------------------------------
 // PROBLEM 4 — Conceptual (answer in a comment)
@@ -44,6 +79,7 @@ void Problem1_WeakPtrUsage(AActor* LastAttacker)
 // old-style `enum` instead of `enum class`. What specifically breaks, and why
 // does `enum class` avoid it?
 // TODO: write your answer as a comment.
+// enums would conflict on the Close and Open naming because the compiler can't tell which one I'm calling, whereas enumclass is EDoorState::Open, letting the compiler know we want the Open from EDoorState
 
 // ---------------------------------------------------------
 // PROBLEM 5 — std::vector Basics
@@ -54,6 +90,15 @@ void Problem1_WeakPtrUsage(AActor* LastAttacker)
 void Problem5_VectorBasics()
 {
 	// TODO
+	std::vector<int> Nums;
+	Nums.push_back(10);
+	Nums.push_back(20);
+	Nums.push_back(30);
+
+	UE_LOG(LogTemp, Log, TEXT("Size: %d"), Nums.size());
+	for(int N : Nums){
+		UE_LOG(LogTemp, Log, TEXT("%d"), N);
+	}
 }
 
 // ---------------------------------------------------------
@@ -63,6 +108,7 @@ void Problem5_VectorBasics()
 // with 2 elements. Then push_back 50 more elements. Is that old pointer still
 // safe to use? Why or why not?
 // TODO: write your answer as a comment.
+// No the vector had to go through resizing meaning the old pointer to element [0] is no longer safe to use if you need to use it take a fresh pointer/reference at that point
 
 // ---------------------------------------------------------
 // PROBLEM 7 — Conceptual, Cross-Tie to Hashing (answer in a comment)
@@ -70,3 +116,5 @@ void Problem5_VectorBasics()
 // Day 29/30 covered hash map chaining for collisions. In one or two sentences,
 // explain where std::vector actually shows up inside that mechanism.
 // TODO: write your answer as a comment.
+// so we store collisions in different ways and one of them is chaining which means the keys are put in the same bucket in this case
+// as the vector could resize it allows it to continue chaining in the bucket making it a good option to select
