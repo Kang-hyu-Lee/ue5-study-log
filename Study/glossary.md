@@ -68,6 +68,16 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 
 **Template instantiation** — the compiler generating real, separate machine code for each specific type a template is used with, at compile time of the calling code — why STL container code lives entirely in headers rather than a separately-compiled .cpp. Ex: unordered_map<string,int> and unordered_map<int,int> are two different generated classes. *(flagged Day 30)*
 
+**enum class** — a scoped, strongly-typed set of named constants; must be written EnumName::Value, unlike old-style enum which leaks names into the surrounding scope. Ex: EDoorState::Open vs EWeaponState::Open — zero naming collision. *(flagged Day 31)*
+
+**switch statement** — alternative to if/else-if chains for comparing one variable against several discrete values; break exits the switch only, not the function, and its absence causes fall-through into the next case. Ex: switching on EDoorState to log a different message per door state. *(flagged Day 31)*
+
+**std::vector** — a dynamic, resizable array managing its own heap memory; push_back() may trigger reallocation, invalidating any pointer/iterator taken before the resize. Ex: a hash map's chained bucket is literally a std::vector<Entry>. *(flagged Day 31)*
+
+**static member function** — a class member with no hidden `this`/object requirement; called via ClassName::Function(), cannot access non-static members. Declared static once in the header only, never repeated on the .cpp definition. Ex: pure math utility functions like ManualNormalize needed no per-object state, so static was the correct fix for an E0245 "nonstatic member reference" error. *(flagged Day 31)*
+
+**forward declaration** — telling the compiler a type name exists (enough to declare a pointer/reference to it) without its full definition; cheaper than a full #include, avoids circular-include problems. Ex: `class UHealthRegenComponent* HealthRegen;` inline, or a standalone `class UHealthRegenComponent;` line — redundant if the full header is already #included. *(flagged Day 31)*
+
 ## Industry/Career
 
 **PR (Pull Request) / Code review** — before code merges into the main codebase, someone else reviews the diff and comments/approves. Standard practice everywhere, including solo open-source contributions.
@@ -123,3 +133,23 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 **CreateDefaultSubobject<T>()** — a constructor-only Unreal factory function that creates a component through Unreal's own object system (GC-safe, reflected), taking a template type argument and a required unique FName identifier. Ex: MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent")); Pitfall: duplicate names between two calls in the same class crash at construction. *(flagged Day 30)*
 
 **TEXT() / FName** — TEXT() wraps a string literal to the TCHAR type UE5 expects internally; FName is Unreal's fast-comparison identifier string type (stored as a number internally, not raw text). Ex: TEXT("MeshComponent") passed directly as an FName argument. *(flagged Day 30)*
+
+**GC Root** — UE5's garbage collector traces reachability outward from a small fixed root set through UPROPERTY()-marked pointers; most objects are alive by being reachable, not by being roots themselves. Ex: an Actor is alive because it's reachable from UWorld, not because it's a root itself. *(flagged Day 31)*
+
+**TWeakObjectPtr** — a non-owning reference to a UObject that does NOT count as a GC root; must check IsValid() immediately before each use since the target can go stale at any point. Ex: storing "LastAttacker" without forcing that Actor to stay alive after it despawns. *(flagged Day 31)*
+
+**UE_LOG** — macro for engine logging; takes a category, verbosity (Log/Warning/Error/Fatal), and printf-style format string. TEXT() wraps string literals; FString arguments need `*` (FString::operator*()) to convert to the TCHAR* that %s expects. Ex: `*Owner->GetName()` parses as `*(Owner->GetName())` due to -> binding tighter than unary *. *(flagged Day 31)*
+
+**FMath (vs std::cos/sin etc.)** — UE5's own math function wrappers, used instead of the standard library for cross-platform floating-point consistency (different libm implementations can diverge, breaking client/server-matched simulations) and platform-specific performance optimization. Ex: always FMath::Cos, never bare cos(), in UE5 project code. *(flagged Day 31)*
+
+**UActorComponent** — base class for non-spatial, modular Actor behavior/data; has no transform (that's USceneComponent's job), so it never needs SetupAttachment(). Created via CreateDefaultSubobject() in the owning Actor's constructor. Ex: UHealthRegenComponent — pure regen logic, no position of its own. *(flagged Day 31)*
+
+**GetOwner()** — UActorComponent member function returning the AActor it's attached to; risky in the component's own constructor (owner/sibling setup may not be finished), safe from BeginPlay() onward. *(flagged Day 31)*
+
+**Euler angles (Pitch/Yaw/Roll)** — 3D orientation built from three sequential single-axis rotations; non-commutative (order matters), which is the root cause of gimbal lock. Ex: UE5's FRotator is the human-readable editor-facing form of this. *(flagged Day 31)*
+
+**Gimbal lock** — when Pitch reaches ±90°, Pitch's rotation physically drags Roll's axis until it aligns with Yaw's axis, collapsing two of the three rotational degrees of freedom into one. Ex: a camera pitched straight up losing the ability to bank independently of turning. *(flagged Day 31)*
+
+**Quaternion** — a 4-number (w,x,y,z) encoding of ONE axis + ONE angle (w=cos(θ/2), xyz=sin(θ/2)*axis); avoids gimbal lock structurally since there's no chain of dependent axes to collapse. Ex: FQuat, UE5's internal rotation representation. *(flagged Day 31)*
+
+**Hamilton product** — quaternion multiplication formula composing two rotations into one: scalar part = w1w2 − v1·v2, vector part = w1v2 + w2v1 + v1×v2; built directly from dot and cross product. The cross-product term is what makes composition order-dependent (anti-symmetric), matching real rotation composition. Ex: FQuat's overloaded * operator. *(flagged Day 31)*

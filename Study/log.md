@@ -265,7 +265,7 @@ UCLASS() needed a separate GENERATED_BODY() placeholder — both resolved after 
 Open question: still need to reconcile the wrong Visual-Studio-template .gitignore that
 got committed to the repo — need to check git log/status before overwriting it
 
-## Day 30 — 2026-XX-XX
+## Day 30 
 Learned: unordered_map/set syntax (insert vs operator[], find/count), std::pair/range-based-for/iterators, CreateDefaultSubobject<T>() parameters (template arg = compile-time type, FName arg = unique instance name), the actor-vs-component distinction (SpawnActor for independent world entities, CreateDefaultSubobject for parts built into an actor at compile time — not interchangeable), UCLASS/UPROPERTY/UFUNCTION and what reflection actually means, Actor lifecycle (constructor vs BeginPlay vs Tick) and why "unsafe in constructor" means "move it to BeginPlay," not "use a different function"
 
 Confused: initially conflated fixing a lifecycle-timing bug with switching functions entirely (tried translating a SpawnActor call into CreateDefaultSubobject) before separating "which function" from "when it's safe to call it" — resolved during review
@@ -278,3 +278,21 @@ Learned: real UE5 build/IntelliSense workflow (Live Coding vs full rebuild, stal
 Confused: (n/a — self-resolved via UE_LOG isolation)
 
 Open question: build the habit of scrolling a whole file top-to-bottom after edits — hit two separate duplicate-declaration bugs tonight from the same root cause
+
+## Day 31 
+
+Learned: closed Day 29/30 debt (TWeakObjectPtr, enum class, std::vector) before
+touching new material; built quaternions from first principles (Euler angles,
+gimbal lock mechanism, normalization, axis+angle formula, why the formula
+structurally prevents gimbal lock, Hamilton product derivation tied back to
+Day 8 dot/cross product); built and debugged a real UHealthRegenComponent
+attached to a TestActor in the actual UE5 project, including Solution Explorer
+resync, an LNK2019 linker error, and a static-vs-instance member function fix
+
+Confused: initially mixed up cross product with matrix multiplication, and
+initially attributed FRotator+/FQuat* composition failure only to gimbal lock
+rather than the general multiplicative (not additive) nature of rotation
+composition — both resolved through tracing, not told outright
+
+Open question: how would you actually detect a gimbal-lock case automatically
+in running gameplay code (not just by eyeballing Pitch≈90 in the editor)?
