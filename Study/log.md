@@ -296,3 +296,8 @@ composition — both resolved through tracing, not told outright
 
 Open question: how would you actually detect a gimbal-lock case automatically
 in running gameplay code (not just by eyeballing Pitch≈90 in the editor)?
+
+## Day 32 
+Learned: tree traversal (in/pre/post-order) confirmed via timed drill; BST insert with duplicate-handling decision (drop duplicates); isValidBST via in-order-with-prev pattern (public/private wrapper split, pass-by-reference for cross-call state); binary search (iterative, fixed inverted branch logic + unsigned/signed size_t cast bug); self-balancing trees (red-black invariants, rotation trigger) closing the Day 30 "BST ≠ automatically O(log n)" gap; UE5 Enhanced Input system end-to-end (Input Action/Mapping Context split, subsystem activation, C++ parent/BP child pattern, GameMode Default Pawn Class spawning).
+Confused: initially inverted binary search's lo/hi update branches; missed the size_t→int cast trap twice before catching it.
+Open question: none outstanding — Enhanced Input verified working in PIE.
