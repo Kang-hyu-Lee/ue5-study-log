@@ -306,3 +306,27 @@ Open question: none outstanding — Enhanced Input verified working in PIE.
 Learned: lerp vs slerp mechanism (chord vs arc geometry), why quaternion component-lerp needs renormalization (nlerp), dot-product sign flip for shortest-path interpolation, near-parallel numerical instability and its lerp fallback, interpolation vs extrapolation, why Tick() state must be a member not a local, why DeltaTime scaling prevents framerate-dependent behavior, and diagnosed a real bug: FQuat's reflection zero-init (W=0) is not identity, so an uninitialized rotation member produces invalid Slerp output from frame one.
 Confused: initially mixed up which Clamp bound controls which overshoot direction (Problem 2), and under-explained the gimbal-lock mechanism in Problem 3 before revising it correctly.
 Open question: when exactly does UE5's reflection system zero-init vs. type-default-construct a UPROPERTY — is FQuat the exception, or are there other common types with the same trap?
+
+## Day 34 — 2026-09-21
+
+Learned: Built UOrbitRotationComponent — a reusable, attachable component driving continuous
+quaternion-slerp rotation, replacing Day 33's one-shot Tick()-based ARotatingActor logic.
+Covered: the mechanism difference between direct quaternion increment vs slerp-chasing a
+self-advancing target; exponential smoothing (1 - e^(-k*dt)) and why it's frame-rate-independent
+where linear alpha isn't; quaternion multiplication order and world-space vs local-space axis
+composition; UPROPERTY's two independent purposes (GC root-marking for UObject* pointers vs
+optional reflection for plain structs) and that it operates entirely independent of C++ access
+specifiers (private members are fully reflectable); friend declarations, including that
+GENERATED_BODY() itself relies on one to let reflection codegen bypass normal access control;
+GetSafeNormal() vs GetUnsafeNormal() and why "safe" only prevents NaN, not the deeper
+zero-axis-has-no-meaningful-rotation problem; UHT/Live Coding recompilation as the actual
+mechanism behind new classes/components not appearing in the editor.
+
+Confused: Initially double-counted SetActorRotation() calls — left Day 33's Tick() logic running
+in parallel with the new component, both writing to the same Actor's rotation every frame, which
+silently masked the new component actually working correctly. Also briefly reached for return
+instead of if/else to prevent a fallback value from being unconditionally overwritten — a control-
+flow habit worth watching for going forward.
+
+Open question: none carried forward from today specifically — Day 12's Node** vs Node*& question
+is still open from earlier.
