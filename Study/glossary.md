@@ -78,6 +78,23 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 
 **forward declaration** — telling the compiler a type name exists (enough to declare a pointer/reference to it) without its full definition; cheaper than a full #include, avoids circular-include problems. Ex: `class UHealthRegenComponent* HealthRegen;` inline, or a standalone `class UHealthRegenComponent;` line — redundant if the full header is already #included. *(flagged Day 31)*
 
+**Half-open range [lo, hi)** — range that includes lo and excludes hi; size is hi - lo, empty is lo == hi, splits share a boundary with no ±1. Ex: `for (i = 0; i < n; ++i)`, `v.begin()/v.end()`, merge sort's [lo, mid) + [mid, hi). *(flagged Day 36)*
+**Stable sort** — equal keys keep their original relative order. Ex: merge with `<=` is stable, `<` is not; UE5 `TArray::StableSort()` vs `Sort()`. *(flagged Day 36)*
+
+**Inversion** — a pair i < j where v[i] > v[j], a measure of how unsorted an array is. Ex: [2,4,1,3,5] has 3; counted in O(n log n) during merge. *(flagged Day 36)*
+
+**Dummy (sentinel) node** — fake head node that removes the "list is empty" special case when building or editing a list; return dummy.next, never &dummy. Ex: mergeLists. *(flagged Day 36)*
+
+**assert** — runtime check that crashes on a false condition; stripped in release (NDEBUG), so never put required work inside it. Ex: UE5 `check()` / `ensure()` / `verify()`. *(flagged Day 36)*
+
+**Ternary operator** — `cond ? a : b`, an expression form of if/else that produces a value. Ex: `tail->next = a ? a : b;`. *(flagged Day 36)*
+
+**Compiler flags** — options passed to the compiler: `-std=c++17` sets the language version, `-Wall -Wextra` enable warnings, `-o` names the output. Ex: signed/unsigned warning caught by -Wall; UBT generates flags in UE5. *(flagged Day 36)*
+
+**Forward declaration** — `class X;` tells the compiler a type exists; enough for pointers/references, a full #include is needed to use members. Ex: forward-declare in UE headers, include in .cpp to cut build times. *(flagged Day 36)*
+
+**IntelliSense vs compiler errors** — VS's background analyzer (E#### codes) is often wrong on UE macros/generated files; real errors are C#### / LNK####. Ex: E1696 on .generated.h before the first build. *(flagged Day 36)*
+
 ## Industry/Career
 
 **PR (Pull Request) / Code review** — before code merges into the main codebase, someone else reviews the diff and comments/approves. Standard practice everywhere, including solo open-source contributions.
@@ -153,3 +170,11 @@ Log new entries here whenever a `?`-flagged term comes up in a session. Format: 
 **Quaternion** — a 4-number (w,x,y,z) encoding of ONE axis + ONE angle (w=cos(θ/2), xyz=sin(θ/2)*axis); avoids gimbal lock structurally since there's no chain of dependent axes to collapse. Ex: FQuat, UE5's internal rotation representation. *(flagged Day 31)*
 
 **Hamilton product** — quaternion multiplication formula composing two rotations into one: scalar part = w1w2 − v1·v2, vector part = w1v2 + w2v1 + v1×v2; built directly from dot and cross product. The cross-product term is what makes composition order-dependent (anti-symmetric), matching real rotation composition. Ex: FQuat's overloaded * operator. *(flagged Day 31)*
+
+**PIE (Play In Editor)** — running the game inside the editor; multiplayer options set player count and net mode. Ex: 2 players, Play As Client. *(flagged Day 36)*
+
+**Listen server** — one player's machine is both server and player; free to host, but the host has authority and a latency advantage. Ex: co-op games; host's PC is Authority true + Local true. *(flagged Day 36)*
+
+**HasAuthority() vs IsLocalController()** — authority = "is this the official (server) copy?"; local = "is this the player at this machine's keyboard?". Ex: listen-server host's copy of a remote client's PC is Authority true, Local false. *(flagged Day 36)*
+
+**UE5 gameplay framework ownership** — GameMode server-only (rules); GameState all machines (match state); PlayerController server + owning client (input); PlayerState all machines (per-player data). Ex: score → PlayerState. *(flagged Day 36)*

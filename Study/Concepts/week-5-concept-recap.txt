@@ -1,0 +1,121 @@
+WEEK 5 CONCEPT RECAP  (Days 29-34)  -- Study/Exercises/week-5-concept-recap.txt
+Recall aid, not a re-teach. Cover a section, recite it, then check.
+
+=====================================================================
+WATCH LIST  (missed/partial on Day 35 review -- recite these first)
+=====================================================================
+- unordered_map lookup: AVERAGE O(1), WORST O(n).   std::map: O(log n) always.
+- Pick std::map over unordered_map when you need:
+    (a) sorted iteration or range queries (e.g. lower_bound, "keys 10..50")
+    (b) guaranteed O(log n) worst case (no bad-hash O(n) spikes)
+- Gimbal lock: Euler rotations apply IN SEQUENCE -> middle axis (pitch) hits
+  +/-90 deg -> first and third axes line up -> 1 degree of freedom LOST.
+- Quaternion = rotation AXIS + ANGLE in 4 floats (x,y,z,w). Must be unit length.
+- Normalize zero vector -> 0/0 -> NaN -> NaN spreads through transform -> Actor vanishes.
+- F prefix = struct / non-UObject type (FVector, FString). NOT for int/float (no prefix).
+
+=====================================================================
+DAY 29 -- HASHING PT.1 / std::vector / UE5 ANATOMY / TArray / strings
+=====================================================================
+Hashing
+  key -> hash function -> integer -> index = hash % bucketCount
+  Collision = two keys land in same bucket
+    chaining: bucket holds a list/vector of entries
+    open addressing: probe for the next free slot
+  Load factor = entries / buckets  -> too high -> rehash (bigger table, reinsert all)
+std::vector<T>  (dynamic array, contiguous memory)
+  v.push_back(x)  v.size()  v[i]  v.capacity()
+  full -> allocates bigger block, copies/moves all -> push_back amortized O(1)
+  pitfall: reallocation invalidates pointers/references/iterators into it
+UE5 project anatomy
+  .uproject          project descriptor
+  Source/<Module>/   your C++ code
+  <Module>.Build.cs  module dependencies (which engine modules you link)
+  <Name>.Target.cs   build target (Game / Editor)
+  #include "X.generated.h" must be the LAST include; GENERATED_BODY() in class
+TArray<T>   UE's std::vector:  Add()  Num()  [i]  Remove()  RemoveAt()
+FString  mutable text you build/edit          (logs, string manipulation)
+FName    immutable, hashed, fast compare, case-insensitive  (IDs, socket/bone names)
+FText    localizable, user-facing text        (anything shown in UI)
+
+=====================================================================
+DAY 30 -- HASHING PT.2 / ACTOR LIFECYCLE / MACROS / GC / DeltaTime
+=====================================================================
+std::unordered_map<K,V> / std::unordered_set<K>
+  m.insert({k,v})  m.find(k) != m.end()  m.count(k)  m.erase(k)
+  pitfall: m[k] on a missing key INSERTS a default value
+  avg O(1) insert/find/erase, worst O(n) (all in one bucket)
+AActor lifecycle
+  Constructor  -> defaults, CreateDefaultSubobject; NO world yet (don't touch it)
+  BeginPlay()  -> world exists; call Super::BeginPlay() FIRST
+  Tick(float DeltaTime) -> every frame; needs PrimaryActorTick.bCanEverTick = true
+Reflection macros
+  UCLASS()  UPROPERTY(EditAnywhere, ...)  UFUNCTION(BlueprintCallable, ...)
+GC
+  UPROPERTY() on a UObject* = GC can see the reference -> object kept alive
+  raw UObject* without it -> can be collected -> dangling pointer
+  TWeakObjectPtr<T>  non-owning, doesn't keep alive; check .IsValid() then .Get()
+enum class  scoped, no implicit int conversion
+  UENUM(BlueprintType) enum class EState : uint8 { Idle, Active };
+DeltaTime  seconds since last frame
+  value per SECOND * DeltaTime = value this frame  -> frame-rate independent
+Epic prefixes
+  A = AActor-derived (lives in world)   U = UObject-derived (non-Actor, incl. components)
+  F = struct / plain type               E = enum      T = template (TArray, TMap)
+  I = interface                         b = bool (bIsActive)
+
+=====================================================================
+DAY 31 -- EULER / GIMBAL LOCK / NORMALIZATION / QUATERNIONS / COMPONENTS
+=====================================================================
+Euler angles  Pitch (nod), Yaw (turn), Roll (tilt) -- 3 sequential rotations
+Gimbal lock   see WATCH LIST
+Magnitude     |v| = sqrt(x^2 + y^2 + z^2)
+Normalize     v_hat = v / |v|   -> length 1, keeps direction only
+  UE: GetSafeNormal() returns zero vector instead of NaN when |v| ~ 0
+Quaternion    unit: x^2 + y^2 + z^2 + w^2 = 1; no gimbal lock (single axis-angle)
+UE types
+  FVector    (x,y,z) position/direction
+  FRotator   (Pitch, Yaw, Roll) -- Euler, degrees
+  FQuat      quaternion
+  FTransform Location + Rotation(FQuat) + Scale  (local/world space)
+UActorComponent
+  reusable behavior attached to an Actor; no transform of its own
+  (USceneComponent adds a transform)
+  GetOwner() -> AActor* it's attached to
+  TickComponent(DeltaTime, ...); needs PrimaryComponentTick.bCanEverTick = true
+
+=====================================================================
+DAY 32 -- TREES DRILL / BINARY SEARCH / SELF-BALANCING / ENHANCED INPUT
+=====================================================================
+Traversals
+  In-order   L  N  R   (BST -> sorted output)
+  Pre-order  N  L  R   (copy/serialize a tree)
+  Post-order L  R  N   (delete a tree: children before parent)
+BST validity: every node carries (min, max) bounds from ALL ancestors
+  go left  -> (min, parent)     go right -> (parent, max)
+  pitfall: checking only parent vs child misses deep violations
+Degenerate BST: sorted inserts -> chain -> height n -> O(n)
+Self-balancing (AVL, red-black): rotations keep height ~ log n
+  std::map = red-black tree
+Binary search  (REQUIRES sorted data)  O(log n)
+  mid = lo + (hi - lo) / 2        (avoids int overflow)
+  pitfalls: < vs <= loop condition, hi = mid vs mid-1, infinite loop on no shrink
+  plain version: finds A match, not necessarily first/last duplicate
+Enhanced Input
+  UInputAction (IA_Jump)  +  UInputMappingContext (IMC_Default: key -> action)
+  add mapping context via UEnhancedInputLocalPlayerSubsystem (BeginPlay)
+  bind: EnhancedInput->BindAction(Action, ETriggerEvent::Triggered, this, &AMyChar::Fn)
+
+=====================================================================
+DAY 33-34 -- LERP / SLERP / PORTFOLIO COMPONENT
+=====================================================================
+Lerp     result = A + (B - A) * t      t in [0,1]   (t=0 -> A, t=1 -> B)
+         FMath::Lerp(A, B, t)
+Slerp    interpolate along the ARC of rotation -> constant angular speed,
+         stays unit length.   FQuat::Slerp(A, B, Alpha)
+  lerp on quats cuts the chord -> uneven speed + non-unit result
+Per-frame smoothing   Alpha = InterpSpeed * DeltaTime  (clamp to [0,1])
+Portfolio: UOrbitRotationComponent
+  UActorComponent, continuous quaternion slerp rotation
+  EditAnywhere: RotationSpeedDegrees, RotationAxis, InterpSpeed
+  zero-axis fallback (avoids NaN from normalizing a zero vector)

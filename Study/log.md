@@ -330,3 +330,16 @@ flow habit worth watching for going forward.
 
 Open question: none carried forward from today specifically — Day 12's Node** vs Node*& question
 is still open from earlier.
+
+## Day 35 — 2026-09-24
+Learned: confirmed all 3 Phase-Gate debt items hold (traversal order, BST (min,max) bounds, Epic prefixes); NaN is what actually happens when normalizing a zero vector
+Confused: hashing average cost (said O(log n), it's O(1) — O(log n) is std::map); F prefix means struct/non-UObject type, not primitives
+Open question: at what point does a gimbal-locked Euler rotation become unrecoverable vs just awkward?
+
+## Day 36 — 2026-09-28
+
+Learned: merge sort as post-order divide & conquer (split → recurse → merge), O(n log n) = ⌈log₂ n⌉ levels × O(n) per level; stability hinges on `<=` in the merge comparison; O(n log n) inversion counting via `mid - i`; linked-list merge sort with slow/fast split + dummy head (O(log n) space, no buffer); UE5 gameplay framework ownership, verified by predicting then logging line counts in Play As Client and Listen Server
+
+Confused: half-open [lo, hi) ranges (mixed conventions broke the merge), why merge needs a separate buf, where mergeRange sits in the recursion, v[k++] = buf[k++] double increment, uninitialized loop variable, running a stale exe, HasAuthority() vs IsLocalController()
+
+Open question: on a listen server, PostLogin fired before the host PC's BeginPlay — where should setup logic go that needs both to have happened?
